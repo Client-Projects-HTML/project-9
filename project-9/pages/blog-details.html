@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Safety Tips - Heavy Equipment Rental</title>
+    <meta name="description" content="Read our top safety tips for operating heavy machinery.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="brand fw-bold" style="font-size: 1.5rem;">
+                Heavy<span class="text-primary">Rent</span>
+            </a>
+            <div class="nav-menu d-flex align-items-center gap-3" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="equipment.html" class="nav-link">Equipment</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="d-flex align-items-center gap-2">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Login</a>
+                    <button id="rtl-toggle" class="btn btn-outline ms-2" style="padding: 0.5rem 1rem;">RTL</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-5" style="background-color: var(--color-bg-surface);">
+        <div class="container text-center">
+            <span id="post-category" class="text-primary fw-bold mb-2 d-block">CATEGORY</span>
+            <h1 id="post-title" class="mb-3">Article Title</h1>
+            <p id="post-meta" class="text-muted">Date • By Author</p>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-4">
+                <!-- Main Article -->
+                <div style="flex: 2; min-width: 300px;">
+                    <img id="post-image" src="" alt="Article Image"
+                        style="border-radius: var(--radius-lg); width: 100%; margin-bottom: 2rem;">
+
+                    <div id="blog-detail-content" style="max-width: 800px;">
+                        <!-- Content injected by main.js -->
+                    </div>
+
+                    <hr class="my-5" style="border-top: 1px solid var(--border-color);">
+
+                    <!-- Comments Placeholder -->
+                    <h3 class="mb-4">Comments (0)</h3>
+                    <div class="card p-4">
+                        <p class="text-muted">No comments yet. Be the first to share your thoughts!</p>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div style="flex: 1; min-width: 300px;">
+                    <div class="card mb-4">
+                        <h4 class="mb-3">Search</h4>
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+
+                    <div class="card mb-4">
+                        <h4 class="mb-3">Categories</h4>
+                        <ul class="d-flex flex-column gap-2">
+                            <li><a href="blog.html?category=safety" class="text-muted hover-primary">Safety</a></li>
+                            <li><a href="blog.html?category=maintenance"
+                                    class="text-muted hover-primary">Maintenance</a></li>
+                            <li><a href="blog.html?category=technology" class="text-muted hover-primary">Technology</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="mb-3">Recent Posts</h4>
+                        <ul id="recent-posts-list" class="d-flex flex-column gap-3">
+                            <!-- Injected by main.js -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5" style="background-color: var(--color-footer-bg); color: var(--color-footer-text);">
+        <div class="container">
+            <div class="row gy-4">
+                <!-- Brand -->
+                <div class="col-lg-3 col-md-6">
+                    <a href="index.html" class="d-inline-block mb-3 text-decoration-none">
+                        <span class="fw-bold" style="font-size: 1.5rem; color: var(--color-footer-heading);">Heavy<span
+                                class="text-primary">Rent</span></span>
+                    </a>
+                    <p class="small mb-4">Your trusted partner for heavy equipment rental and leasing solutions.
+                        Building the future, together.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" style="color: var(--color-footer-link);">Twitter</a>
+                        <a href="#" style="color: var(--color-footer-link);">LinkedIn</a>
+                        <a href="#" style="color: var(--color-footer-link);">Facebook</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">About Us</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Services</a>
+                        </li>
+                        <li class="mb-2"><a href="equipment.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Equipment</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="404.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Help Center</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Terms of Service</a></li>
+                        <li class="mb-2"><a href="coming-soon.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Privacy
+                                Policy</a></li>
+                        <li class="mb-2"><a href="services.html#faq" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Contact Us</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">123 Construction Ave, Industry City, ST 12345</li>
+                        <li class="mb-2">+1 (555) 123-4567</li>
+                        <li class="mb-2">info@heavyrent.com</li>
+                    </ul>
+                    <div class="mt-3">
+                        <input type="email" class="form-control form-control-sm mb-2" placeholder="Your Email">
+                        <button class="btn btn-primary btn-sm w-100">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-top border-secondary mt-5 pt-4 d-flex justify-content-between align-items-center small flex-wrap gap-2">
+                <p class="mb-0">&copy; 2026 HeavyRent Inc. All rights reserved.</p>
+                <p class="mb-0 smaller text-muted">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none" style="color: inherit;">AbhiVorn technologies pvt.ltd.</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

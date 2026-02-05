@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Orders - HeavyRent</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../../pages/index.html" class="brand fw-bold" style="font-size: 1.5rem;">Heavy<span
+                        class="text-primary">Rent</span> <span
+                        style="font-size: 0.8rem; background: var(--color-primary); color: black; padding: 2px 5px; border-radius: 4px;">Admin</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">Dashboard</a>
+                <a href="users.html" class="sidebar-link">Users</a>
+                <a href="orders.html" class="sidebar-link active">Orders</a>
+                <a href="equipment.html" class="sidebar-link">Equipment</a>
+                <a href="settings.html" class="sidebar-link">Settings</a>
+                <a href="../../pages/login.html" class="sidebar-link text-muted">Logout</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <h4 class="mb-0">Manage Orders</h4>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.25rem 0.5rem;">RTL</button>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="../../assets/images/profile-avatar.png" alt="Profile" class="nav-avatar">
+                        <span class="fw-bold">Admin User</span>
+                    </div>
+                </div>
+            </header>
+            <div class="container-fluid py-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="mb-0">Latest Orders</h3>
+                    <div class="d-flex gap-2">
+                        <select id="status-filter" class="btn btn-outline py-1 px-3"
+                            style="font-size: 0.9rem; border-color: var(--border-color);">
+                            <option value="All Status">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        <button id="export-data-btn" class="btn btn-primary btn-sm">Export Data</button>
+                    </div>
+                </div>
+
+                <div class="card p-0 overflow-hidden">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="orders-table">
+                            <thead>
+                                <tr>
+                                    <th class="ps-4">Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Equipment</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th class="text-end pe-4">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-order-id="ORD-001">
+                                    <td class="ps-4 fw-bold text-primary">#ORD-001</td>
+                                    <td class="customer-name">Metro Construction</td>
+                                    <td class="equipment-name">Cat 320 Excavator</td>
+                                    <td>Oct 12, 2025</td>
+                                    <td class="fw-bold order-total">$1,200</td>
+                                    <td><span class="badge bg-success-soft order-status">Active</span></td>
+                                    <td class="text-end pe-4">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-outline btn-sm view-order"
+                                                style="width: 34px; height: 34px; padding: 0;" title="View"><i
+                                                    class="bi bi-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-order-id="ORD-002">
+                                    <td class="ps-4 fw-bold text-primary">#ORD-002</td>
+                                    <td class="customer-name">John Wick</td>
+                                    <td class="equipment-name">Komatsu D61 Dozer</td>
+                                    <td>Oct 10, 2025</td>
+                                    <td class="fw-bold order-total">$1,500</td>
+                                    <td><span class="badge bg-warning-soft order-status">Pending</span></td>
+                                    <td class="text-end pe-4">
+                                        <div class="d-flex justify-content-end align-items-center gap-2">
+                                            <button class="btn btn-outline btn-sm view-order"
+                                                style="width: 34px; height: 34px; padding: 0;" title="View"><i
+                                                    class="bi bi-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-order-id="ORD-003">
+                                    <td class="ps-4 fw-bold text-primary">#ORD-003</td>
+                                    <td class="customer-name">Skyline Ltd.</td>
+                                    <td class="equipment-name">Liebherr Crane</td>
+                                    <td>Oct 08, 2025</td>
+                                    <td class="fw-bold order-total">$2,500</td>
+                                    <td><span class="badge bg-primary-soft order-status">Completed</span></td>
+                                    <td class="text-end pe-4">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-outline btn-sm view-order"
+                                                style="width: 34px; height: 34px; padding: 0;" title="View"><i
+                                                    class="bi bi-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr data-order-id="ORD-004">
+                                    <td class="ps-4 fw-bold text-primary">#ORD-004</td>
+                                    <td class="customer-name">Sarah Connor</td>
+                                    <td class="equipment-name">Cat 950 Loader</td>
+                                    <td>Oct 05, 2025</td>
+                                    <td class="fw-bold order-total">$900</td>
+                                    <td><span class="badge bg-danger-soft order-status">Cancelled</span></td>
+                                    <td class="text-end pe-4">
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-outline btn-sm view-order"
+                                                style="width: 34px; height: 34px; padding: 0;" title="View"><i
+                                                    class="bi bi-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <footer class="py-4 text-end small text-muted mt-auto">
+                <p class="mb-0">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Order View Modal -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h4>Order Details</h4>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex justify-content-between border-bottom pb-2">
+                        <span class="text-muted">Order ID:</span>
+                        <span id="view-order-id" class="fw-bold text-primary"></span>
+                    </div>
+                    <div class="d-flex justify-content-between border-bottom pb-2">
+                        <span class="text-muted">Customer:</span>
+                        <span id="view-customer-name" class="fw-bold"></span>
+                    </div>
+                    <div class="d-flex justify-content-between border-bottom pb-2">
+                        <span class="text-muted">Equipment:</span>
+                        <span id="view-equipment-name" class="fw-bold"></span>
+                    </div>
+                    <div class="d-flex justify-content-between border-bottom pb-2">
+                        <span class="text-muted">Total Amount:</span>
+                        <span id="view-order-total" class="fw-bold"></span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-muted">Status:</span>
+                        <span id="view-order-status" class="badge"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+</body>
+
+</html>

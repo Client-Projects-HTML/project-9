@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Heavy Equipment Rental</title>
+    <meta name="description" content="Get in touch with us for quotes, support, or general inquiries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="brand fw-bold" style="font-size: 1.5rem;">
+                Heavy<span class="text-primary">Rent</span>
+            </a>
+            <div class="nav-menu d-flex align-items-center gap-3" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="equipment.html" class="nav-link">Equipment</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+                <div class="d-flex align-items-center gap-2">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Login</a>
+                    <button id="rtl-toggle" class="btn btn-outline ms-2" style="padding: 0.5rem 1rem;">RTL</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-3">
+                <!-- Contact Info -->
+                <div style="flex: 1; min-width: 300px;">
+                    <div class="card h-100">
+                        <h3 class="mb-4">Get In Touch</h3>
+                        <div class="mb-4">
+                            <h5 class="text-primary mb-1">Headquarters</h5>
+                            <p class="text-muted">123 Industrial Park Drive,<br>Construction City, ST 12345</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="text-primary mb-1">Phone</h5>
+                            <p class="text-muted">+1 (555) 123-4567<br>+1 (555) 765-4321 (Support)</p>
+                        </div>
+                        <div class="mb-4">
+                            <h5 class="text-primary mb-1">Email</h5>
+                            <p class="text-muted">info@heavyrent.com<br>support@heavyrent.com</p>
+                        </div>
+                        <div>
+                            <h5 class="text-primary mb-1">Working Hours</h5>
+                            <p class="text-muted">Mon - Fri: 7:00 AM - 6:00 PM<br>Sat: 8:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div style="flex: 2; min-width: 300px;">
+                    <div class="card">
+                        <h3 class="mb-4">Send us a Message</h3>
+                        <form id="contact-form">
+                            <div class="d-flex gap-3 flex-wrap mb-3">
+                                <div style="flex: 1;">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" id="name" class="form-control" required>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" id="email" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Placeholder -->
+    <section class="py-5" style="background-color: var(--color-bg-surface);">
+        <div class="container">
+            <div class="h-100 bg-light rounded-lg overflow-hidden" style="min-height: 400px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1707123456789!5m2!1sen!2sus"
+                    width="100%" height="400" style="border:0; border-radius: var(--radius-lg);" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5" style="background-color: var(--color-footer-bg); color: var(--color-footer-text);">
+        <div class="container">
+            <div class="row gy-4">
+                <!-- Brand -->
+                <div class="col-lg-3 col-md-6">
+                    <a href="index.html" class="d-inline-block mb-3 text-decoration-none">
+                        <span class="fw-bold" style="font-size: 1.5rem; color: var(--color-footer-heading);">Heavy<span
+                                class="text-primary">Rent</span></span>
+                    </a>
+                    <p class="small mb-4">Your trusted partner for heavy equipment rental and leasing solutions.
+                        Building the future, together.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" style="color: var(--color-footer-link);">Twitter</a>
+                        <a href="#" style="color: var(--color-footer-link);">LinkedIn</a>
+                        <a href="#" style="color: var(--color-footer-link);">Facebook</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">About Us</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Services</a>
+                        </li>
+                        <li class="mb-2"><a href="equipment.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Equipment</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="404.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Help Center</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Terms of Service</a></li>
+                        <li class="mb-2"><a href="coming-soon.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Privacy
+                                Policy</a></li>
+                        <li class="mb-2"><a href="services.html#faq" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Contact Us</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">123 Construction Ave, Industry City, ST 12345</li>
+                        <li class="mb-2">+1 (555) 123-4567</li>
+                        <li class="mb-2">info@heavyrent.com</li>
+                    </ul>
+                    <div class="mt-3">
+                        <input type="email" class="form-control form-control-sm mb-2" placeholder="Your Email">
+                        <button class="btn btn-primary btn-sm w-100">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-top border-secondary mt-5 pt-4 d-flex justify-content-between align-items-center small flex-wrap gap-2">
+                <p class="mb-0">&copy; 2026 HeavyRent Inc. All rights reserved.</p>
+                <p class="mb-0 smaller text-muted">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

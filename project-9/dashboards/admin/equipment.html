@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Equipment - HeavyRent</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../../pages/index.html" class="brand fw-bold" style="font-size: 1.5rem;">Heavy<span
+                        class="text-primary">Rent</span> <span
+                        style="font-size: 0.8rem; background: var(--color-primary); color: black; padding: 2px 5px; border-radius: 4px;">Admin</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">Dashboard</a>
+                <a href="users.html" class="sidebar-link">Users</a>
+                <a href="orders.html" class="sidebar-link">Orders</a>
+                <a href="equipment.html" class="sidebar-link active">Equipment</a>
+                <a href="settings.html" class="sidebar-link">Settings</a>
+                <a href="../../pages/login.html" class="sidebar-link text-muted">Logout</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <h4 class="mb-0">Manage Equipment</h4>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.25rem 0.5rem;">RTL</button>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="../../assets/images/profile-avatar.png" alt="Profile" class="nav-avatar">
+                        <span class="fw-bold">Admin User</span>
+                    </div>
+                </div>
+            </header>
+            <div class="container py-5">
+                <!-- Filter and Sort Controls -->
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-3">
+                    <div class="d-flex flex-wrap gap-2" id="equipment-filters">
+                        <button class="btn btn-warning active" data-filter="all">All</button>
+                        <button class="btn btn-outline-secondary" data-filter="Excavators">Excavators</button>
+                        <button class="btn btn-outline-secondary" data-filter="Dozers">Dozers</button>
+                        <button class="btn btn-outline-secondary" data-filter="Cranes">Cranes</button>
+                        <button class="btn btn-outline-secondary" data-filter="Loaders">Loaders</button>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <select class="btn btn-outline py-2 px-3" id="equipment-sort"
+                            style="min-width: 200px; border-color: var(--border-color);">
+                            <option value="popularity">Sort by: Popularity</option>
+                            <option value="price-asc">Price (Low to High)</option>
+                            <option value="price-desc">Price (High to Low)</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                        </select>
+                        <button id="add-equipment-btn" class="btn btn-primary text-nowrap">+ Add New Item</button>
+                    </div>
+                </div>
+
+                <!-- Equipment List Container -->
+                <div id="equipment-list" class="d-flex flex-wrap gap-3">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+            <footer class="py-4 text-end small text-muted mt-auto">
+                <p class="mb-0">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Edit Equipment Modal -->
+    <div id="edit-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="mb-0">Edit Equipment</h3>
+                <button class="btn-close">&times;</button>
+            </div>
+            <div class="modal-body py-4">
+                <form id="edit-equipment-form">
+                    <input type="hidden" id="edit-id">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" id="edit-name" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Category</label>
+                        <select id="edit-category" class="form-control" required>
+                            <option value="Excavators">Excavators</option>
+                            <option value="Dozers">Dozers</option>
+                            <option value="Cranes">Cranes</option>
+                            <option value="Loaders">Loaders</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Price per Day ($)</label>
+                        <input type="number" id="edit-price" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Status</label>
+                        <select id="edit-status" class="form-control" required>
+                            <option value="Available">Available</option>
+                            <option value="Rented">Rented</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary flex-grow-1">Update Equipment</button>
+                        <button type="button" class="btn btn-outline flex-grow-1" id="close-edit-modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+</body>
+
+</html>

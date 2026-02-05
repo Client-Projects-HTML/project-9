@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - HeavyRent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .coming-soon-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="coming-soon-page">
+
+        <h1 style="font-size: 4rem; margin-bottom: 1rem;">Coming Soon</h1>
+        <p style="font-size: 1.25rem; max-width: 600px; opacity: 0.9;">We are building the most advanced heavy equipment
+            rental platform. Stay tuned!</p>
+
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number">12</div>
+                <div>Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number">05</div>
+                <div>Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number">42</div>
+                <div>Minutes</div>
+            </div>
+        </div>
+
+        <form class="d-flex gap-2" style="max-width: 400px; width: 100%;">
+            <input type="email" placeholder="Enter your email" class="form-control"
+                style="background: white; border: none;">
+            <button class="btn btn-primary">Notify Me</button>
+        </form>
+
+        <a href="index.html" class="btn btn-outline-light mt-4">Go to Homepage</a>
+
+
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

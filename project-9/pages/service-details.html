@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short-Term Rental - Service Details</title>
+    <meta name="description"
+        content="Detailed information about our short-term heavy equipment rental service including pricing and FAQs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="brand fw-bold" style="font-size: 1.5rem;">
+                Heavy<span class="text-primary">Rent</span>
+            </a>
+            <div class="nav-menu d-flex align-items-center gap-3" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="equipment.html" class="nav-link">Equipment</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="d-flex align-items-center gap-2">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Login</a>
+                    <button id="rtl-toggle" class="btn btn-outline ms-2" style="padding: 0.5rem 1rem;">RTL</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-5" style="background-color: var(--color-bg-surface);">
+        <div class="container">
+            <a href="services.html" class="text-muted mb-2 d-inline-block">← Back to Services</a>
+            <h1 class="mb-3" id="service-title">Loading...</h1>
+            <p class="text-muted" style="max-width: 600px;" id="service-subtitle"></p>
+        </div>
+    </header>
+
+    <section class="py-5" id="service-details-container">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-4">
+                <!-- Main Content -->
+                <div style="flex: 2; min-width: 300px;">
+                    <img id="service-image" src="" alt="Service Image"
+                        style="border-radius: var(--radius-lg); width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 2rem; background-color: #eee; min-height: 300px;">
+
+                    <h2 class="mb-3">Service Overview</h2>
+                    <p class="mb-4 text-muted" id="service-overview">Loading details...</p>
+
+                    <h3 class="mb-3">Key Benefits</h3>
+                    <ul class="mb-5" id="service-benefits"
+                        style="list-style: disc; padding-left: 1.5rem; color: var(--color-text-muted);">
+                        <!-- Benefits will be populated here -->
+                    </ul>
+
+                    <h3 class="mb-3">Frequently Asked Questions</h3>
+                    <div class="mb-4" id="service-faqs">
+                        <!-- FAQs will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Sidebar / Pricing -->
+                <div style="flex: 1; min-width: 300px;">
+                    <div class="card position-sticky" style="top: 100px;">
+                        <h3 class="mb-3">Pricing</h3>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Daily Rate</span>
+                                <span class="fw-bold" id="price-daily">-</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Weekly Rate</span>
+                                <span class="fw-bold" id="price-weekly">-</span>
+                            </div>
+                            <small class="text-muted d-block mt-2">*Rates vary by machine type and availability.</small>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary w-100 mb-2" style="width: 100%;">Request Quote</a>
+                        <a href="#" class="btn btn-outline w-100" style="width: 100%;">Download Catalog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-5" style="background-color: var(--color-footer-bg); color: var(--color-footer-text);">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <p class="mb-0">&copy; 2026 HeavyRent Inc. All rights reserved.</p>
+            <p class="mb-0 smaller text-muted">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                    class="text-decoration-none" style="color: inherit;">AbhiVorn technologies pvt.ltd.</a></p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

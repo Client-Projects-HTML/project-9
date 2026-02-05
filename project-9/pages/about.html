@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Heavy Equipment Rental</title>
+    <meta name="description"
+        content="Learn about our mission, history, and the team behind the best heavy equipment rental service.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar (Duplicated for Vanilla HTML) -->
+    <nav class="navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="index.html" class="brand fw-bold" style="font-size: 1.5rem;">
+                Heavy<span class="text-primary">Rent</span>
+            </a>
+            <div class="nav-menu d-flex align-items-center gap-3" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About Us</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="equipment.html" class="nav-link">Equipment</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="d-flex align-items-center gap-2">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <a href="login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Login</a>
+                    <button id="rtl-toggle" class="btn btn-outline ms-2" style="padding: 0.5rem 1rem;">RTL</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Mission & History -->
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-3 align-items-center">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2 class="mb-3">Our Mission</h2>
+                    <p class="mb-3 text-muted">To provide construction and industrial companies with the highest quality
+                        equipment, ensuring safety, efficiency, and reliability for every project.</p>
+                    <h2 class="mb-3">Our History</h2>
+                    <p class="text-muted">Founded in 2010, HeavyRent started with just 5 excavators. Today, we manage a
+                        fleet of over 500 machines across the region, serving major infrastructure projects.</p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="../assets/images/construction-site.png" alt="Construction Site"
+                        style="border-radius: var(--radius-lg); width: 100%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="py-5" style="background-color: var(--color-bg-surface);">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Leadership Team</h2>
+            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                <div class="card text-center" style="flex: 0 1 300px;">
+                    <div
+                        style="width: 100px; height: 100px; background-color: #ddd; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200"
+                            alt="CEO">
+                    </div>
+                    <h4>John Doe</h4>
+                    <p class="text-primary mb-2">CEO & Founder</p>
+                    <p class="text-muted small">15+ years in construction equipment management.</p>
+                </div>
+                <div class="card text-center" style="flex: 0 1 300px;">
+                    <div
+                        style="width: 100px; height: 100px; background-color: #ddd; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
+                            alt="COO">
+                    </div>
+                    <h4>Jane Smith</h4>
+                    <p class="text-primary mb-2">Head of Operations</p>
+                    <p class="text-muted small">Ensuring our fleet is always ready for your site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5">
+        <div class="container overflow-hidden">
+            <h2 class="text-center mb-5">What Our Clients Say</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="testimonial-carousel">
+                    <!-- Slide 1 -->
+                    <div class="card">
+                        <p class="mb-3">"HeavyRent provided us with top-notch dozers on short notice. Their service
+                            saved
+                            our project timeline."</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <div
+                                style="width: 40px; height: 40px; background: #eee; border-radius: 50%; overflow: hidden;">
+                                <img src="../assets/images/grand-construction-logo.png" alt="Grand Construction Logo"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-bold">Grand Construction Ltd.</p>
+                                <p class="mb-0 small text-muted">Project Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="card">
+                        <p class="mb-3">"The fleet quality is unmatched. We've used their excavators for multiple
+                            high-profile infrastructure projects with zero downtime."</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <div
+                                style="width: 40px; height: 40px; background: #eee; border-radius: 50%; overflow: hidden;">
+                                <img src="../assets/images/buildstrong-logo.png" alt="BuildStrong Logo"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-bold">BuildStrong Infrastructure</p>
+                                <p class="mb-0 small text-muted">Site Supervisor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="card">
+                        <p class="mb-3">"Professional team and seamless booking process. Their real-time tracking and
+                            maintenance support gives us peace of mind."</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <div
+                                style="width: 40px; height: 40px; background: #eee; border-radius: 50%; overflow: hidden;">
+                                <img src="../assets/images/skyline-logo.png" alt="Skyline Logo"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-bold">Skyline Developers</p>
+                                <p class="mb-0 small text-muted">Procurement Officer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="card">
+                        <p class="mb-3">"Reliable machinery and excellent operator support. HeavyRent is our go-to
+                            partner
+                            for all our marine and coastal construction needs."</p>
+                        <div class="d-flex align-items-center gap-2">
+                            <div
+                                style="width: 40px; height: 40px; background: #eee; border-radius: 50%; overflow: hidden;">
+                                <img src="../assets/images/dredgeworks-logo.png" alt="DredgeWorks Logo"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <p class="mb-0 fw-bold">DredgeWorks & Co</p>
+                                <p class="mb-0 small text-muted">Operations Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prev-testimonial" aria-label="Previous Testimonial">←</button>
+                    <button class="carousel-btn" id="next-testimonial" aria-label="Next Testimonial">→</button>
+                </div>
+
+                <!-- Indicators -->
+                <div class="carousel-indicators" id="testimonial-indicators"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="py-5" style="background-color: var(--color-footer-bg); color: var(--color-footer-text);">
+        <div class="container">
+            <div class="row gy-4">
+                <!-- Brand -->
+                <div class="col-lg-3 col-md-6">
+                    <a href="index.html" class="d-inline-block mb-3 text-decoration-none">
+                        <span class="fw-bold" style="font-size: 1.5rem; color: var(--color-footer-heading);">Heavy<span
+                                class="text-primary">Rent</span></span>
+                    </a>
+                    <p class="small mb-4">Your trusted partner for heavy equipment rental and leasing solutions.
+                        Building the future, together.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" style="color: var(--color-footer-link);">Twitter</a>
+                        <a href="#" style="color: var(--color-footer-link);">LinkedIn</a>
+                        <a href="#" style="color: var(--color-footer-link);">Facebook</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">About Us</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Services</a>
+                        </li>
+                        <li class="mb-2"><a href="equipment.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Equipment</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="404.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Help Center</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Terms of Service</a></li>
+                        <li class="mb-2"><a href="coming-soon.html" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">Privacy
+                                Policy</a></li>
+                        <li class="mb-2"><a href="services.html#faq" class="text-decoration-none"
+                                style="color: var(--color-footer-text);">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3" style="color: var(--color-footer-heading);">Contact Us</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2">123 Construction Ave, Industry City, ST 12345</li>
+                        <li class="mb-2">+1 (555) 123-4567</li>
+                        <li class="mb-2">info@heavyrent.com</li>
+                    </ul>
+                    <div class="mt-3">
+                        <input type="email" class="form-control form-control-sm mb-2" placeholder="Your Email">
+                        <button class="btn btn-primary btn-sm w-100">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-top border-secondary mt-5 pt-4 d-flex justify-content-between align-items-center small flex-wrap gap-2">
+                <p class="mb-0">&copy; 2026 HeavyRent Inc. All rights reserved.</p>
+                <p class="mb-0 smaller text-muted">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

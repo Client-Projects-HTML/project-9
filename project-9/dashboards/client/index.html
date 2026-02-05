@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - HeavyRent</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../../pages/index.html" class="brand fw-bold" style="font-size: 1.5rem;">Heavy<span
+                        class="text-primary">Rent</span> <span
+                        style="font-size: 0.8rem; background: var(--color-accent); color: white; padding: 2px 5px; border-radius: 4px;">Client</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link active">Overview</a>
+                <a href="rentals.html" class="sidebar-link">My Rentals</a>
+                <a href="profile.html" class="sidebar-link">Profile</a>
+                <a href="../../pages/login.html" class="sidebar-link text-muted">Logout</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <h4 class="mb-0">Client Overview</h4>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.25rem 0.5rem;">RTL</button>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="../../assets/images/profile-avatar.png" alt="Profile" class="nav-avatar">
+                        <span class="fw-bold">John Doe</span>
+                    </div>
+                </div>
+            </header>
+            <div class="container py-4">
+                <!-- Header Stats Strip -->
+                <div class="row g-2 mb-3 mt-5" style="margin-top: 40px !important;">
+                    <div class="col-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="stat-card-icon bg-primary-soft text-primary d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px; min-width: 40px; font-size: 1rem; border-radius: 8px;">
+                                        <i class="bi bi-truck"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="text-muted fw-bold d-block mb-0"
+                                            style="font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase;">Active
+                                            Rentals</span>
+                                        <h3 class="mb-0 fw-bold" style="font-size: 1.25rem;">2</h3>
+                                        <div class="text-muted mb-0" style="font-size: 0.6rem; line-height: 1;">
+                                            <i class="bi bi-arrow-up text-success me-1"></i>
+                                            <span class="text-success fw-bold">1</span> ending
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="stat-card-icon bg-warning-soft text-warning d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px; min-width: 40px; font-size: 1rem; border-radius: 8px;">
+                                        <i class="bi bi-wallet2"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="text-muted fw-bold d-block mb-0"
+                                            style="font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase;">Due
+                                            Payment</span>
+                                        <h3 class="mb-0 fw-bold" style="font-size: 1.25rem;">$450</h3>
+                                        <div class="text-muted mb-0" style="font-size: 0.6rem; line-height: 1;">Due Feb
+                                            10</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="stat-card-icon bg-success-soft text-success d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px; min-width: 40px; font-size: 1rem; border-radius: 8px;">
+                                        <i class="bi bi-piggy-bank"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="text-muted fw-bold d-block mb-0"
+                                            style="font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase;">Total
+                                            Savings</span>
+                                        <h3 class="mb-0 fw-bold" style="font-size: 1.25rem;">$1,240</h3>
+                                        <div class="text-muted mb-0" style="font-size: 0.6rem; line-height: 1;">
+                                            <i class="bi bi-arrow-up text-success me-1"></i>
+                                            <span class="text-success fw-bold">12%</span> last mo.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modular Dashboard Grid -->
+                <div class="dashboard-grid-layout">
+                    <!-- Column 1: Priority Focus (8 columns) -->
+                    <div style="grid-column: span 8;">
+                        <div class="card-hero-mini mb-3 glass-card border-0 d-flex flex-column justify-content-center align-items-center text-center"
+                            style="min-height: 160px;">
+                            <h2 class="h3 fw-bold mb-1">Welcome Back, <span class="text-gradient">John!</span></h2>
+                            <p class="opacity-75 small mb-3">Your heavy equipment fleet is ready for the next project
+                                phase.</p>
+                            <div class="d-flex gap-2">
+                                <a href="../../pages/equipment.html"
+                                    class="btn btn-primary px-3 py-1.5 hover-glow fw-bold small text-decoration-none">Rent
+                                    New
+                                    Fleet</a>
+                                <a href="../../pages/equipment.html"
+                                    class="btn btn-outline-light px-3 py-1.5 border-0 bg-white bg-opacity-10 fw-bold small text-decoration-none">Browse
+                                    Catalog</a>
+                            </div>
+                        </div>
+
+                        <div class="widget-card mb-3 glass-card border-0">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="mb-0 fw-bold">Active Fleet Status</h6>
+                                <a href="rentals.html" class="btn btn-sm btn-link text-primary p-0 fw-bold xsmall">View
+                                    Inventory <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                            <div class="list-group list-group-flush">
+                                <div class="list-group-item bg-transparent px-0 py-2 d-flex align-items-center gap-3">
+                                    <img src="../../assets/images/cat-320.png" alt="Excavator" class="rounded-md"
+                                        style="width: 60px; height: 45px; object-fit: cover; background: var(--color-bg-surface);">
+                                    <div class="flex-grow-1">
+                                        <div class="fw-bold small">CAT 320 GC Excavator</div>
+                                        <div class="text-muted xsmall">Downtown Site A</div>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="badge bg-success-soft px-2 py-1 rounded-pill xsmall">In Use</span>
+                                        <div class="text-muted xsmall mt-0.5" style="font-size: 0.65rem;">4 days left
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="list-group-item bg-transparent px-0 py-2 d-flex align-items-center gap-3 border-top">
+                                    <img src="../../assets/images/komatsu-d65.png" alt="Dozer" class="rounded-md"
+                                        style="width: 60px; height: 45px; object-fit: cover; background: var(--color-bg-surface);">
+                                    <div class="flex-grow-1">
+                                        <div class="fw-bold small">Komatsu D61PXi-24</div>
+                                        <div class="text-muted xsmall">Harbor Expansion</div>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="badge bg-warning-soft px-2 py-1 rounded-pill xsmall">Standby</span>
+                                        <div class="text-muted xsmall mt-0.5" style="font-size: 0.65rem;">Next shift: 2h
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Activity & Insights (4 columns) -->
+                    <div class="d-flex flex-column gap-3" style="grid-column: span 4;">
+                        <div
+                            class="widget-card border-0 bg-primary bg-opacity-10 text-primary border-start border-4 border-primary">
+                            <h6 class="fw-bold mb-2"><i class="bi bi-lightning-fill me-1"></i>Quick Service</h6>
+                            <p class="xsmall mb-2">Equipment need a quick check?</p>
+                            <a href="../../pages/contact.html"
+                                class="btn btn-primary w-100 py-1.5 fw-bold small text-decoration-none">Request Tech</a>
+                        </div>
+
+                        <div class="widget-card glass-card border-0">
+                            <h6 class="fw-bold mb-3">Recent Activity</h6>
+                            <div class="d-flex flex-column gap-2">
+                                <div class="d-flex gap-2 align-items-center">
+                                    <div class="activity-icon bg-success-soft text-success p-1"
+                                        style="width: 32px; height: 32px; font-size: 0.9rem;"><i
+                                            class="bi bi-check2"></i></div>
+                                    <div>
+                                        <div class="fw-bold xsmall">Fuel Logged</div>
+                                        <div class="text-muted xsmall" style="font-size: 0.65rem;">CAT 320 at 85%</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex gap-2 pt-2 border-top align-items-center">
+                                    <div class="activity-icon bg-info-soft text-info p-1"
+                                        style="width: 32px; height: 32px; font-size: 0.9rem;"><i
+                                            class="bi bi-file-earmark-text"></i></div>
+                                    <div>
+                                        <div class="fw-bold xsmall">New Invoice</div>
+                                        <div class="text-muted xsmall" style="font-size: 0.65rem;">#INV-2025-098</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget-card bg-gradient-primary text-dark border-0 hover-scale">
+                            <h6 class="fw-bold mb-1 small">VIP Support</h6>
+                            <p class="xsmall mb-2 opacity-75">Speak with your concierge.</p>
+                            <a href="../../pages/contact.html"
+                                class="btn btn-dark w-100 py-1.5 fw-bold small text-decoration-none">Connect Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="py-4 text-end small text-muted mt-auto">
+                <p class="mb-0">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
+            </footer>
+        </main>
+    </div>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+</body>
+
+</html>

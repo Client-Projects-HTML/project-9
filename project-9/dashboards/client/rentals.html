@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Rentals - HeavyRent</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--color-bg-card);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            transition: transform var(--transition-normal);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            background-color: var(--color-bg-body);
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-nav {
+            padding: 1rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: var(--color-text-main);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background-color: var(--color-bg-surface);
+            color: var(--color-primary);
+        }
+
+        .topbar {
+            background-color: var(--color-bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+
+        .status-upcoming {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .status-completed {
+            background-color: rgba(108, 117, 125, 0.1);
+            color: #6c757d;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .sidebar {
+            left: auto !important;
+            right: 0 !important;
+            border-right: none !important;
+            border-left: 1px solid var(--border-color);
+        }
+
+        [dir="rtl"] .main-content {
+            margin-left: 0 !important;
+            margin-right: 250px !important;
+        }
+
+        @media (max-width: 992px) {
+            [dir="rtl"] .sidebar {
+                transform: translateX(100%);
+            }
+
+            [dir="rtl"] .sidebar.active {
+                transform: translateX(0);
+            }
+
+            [dir="rtl"] .main-content {
+                margin-right: 0 !important;
+            }
+        }
+
+        /* Modal Visibility Fixes */
+        .modal-container {
+            background-color: var(--color-bg-card) !important;
+            color: var(--color-text-main) !important;
+        }
+
+        .modal-header .modal-close {
+            background: transparent !important;
+            border: none !important;
+            color: var(--color-text-main) !important;
+            font-size: 1.8rem !important;
+            line-height: 1;
+            padding: 0 0.5rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .modal-header .modal-close:hover {
+            opacity: 1;
+            color: var(--color-primary) !important;
+        }
+
+        .alert.bg-info-soft {
+            background-color: var(--color-info-soft) !important;
+            color: var(--color-accent) !important;
+            border: 1px solid rgba(0, 123, 255, 0.2) !important;
+        }
+
+        /* Filter Toggle Styles */
+        .btn-check {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+            pointer-events: none;
+        }
+
+        .btn-check:checked+.btn {
+            background-color: var(--color-primary) !important;
+            color: var(--color-secondary) !important;
+            border-color: var(--color-primary) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../../pages/index.html" class="brand fw-bold" style="font-size: 1.5rem;">Heavy<span
+                        class="text-primary">Rent</span> <span
+                        style="font-size: 0.8rem; background: var(--color-accent); color: white; padding: 2px 5px; border-radius: 4px;">Client</span></a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="sidebar-link">Overview</a>
+                <a href="rentals.html" class="sidebar-link active">My Rentals</a>
+                <a href="profile.html" class="sidebar-link">Profile</a>
+                <a href="../../pages/login.html" class="sidebar-link text-muted">Logout</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <h4 class="mb-0">My Rentals</h4>
+                <div class="d-flex align-items-center gap-3">
+                    <button id="theme-toggle" class="theme-toggle">☀️</button>
+                    <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.25rem 0.5rem;">RTL</button>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="../../assets/images/profile-avatar.png" alt="Profile" class="nav-avatar">
+                        <span class="fw-bold">John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="container py-4">
+
+                <!-- Active Rentals Section -->
+                <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
+                    <h5 class="mb-0 fw-bold">Active Rentals</h5>
+                    <a href="../../pages/index.html#fleet"
+                        class="btn btn-sm btn-primary px-3 fw-bold xsmall shadow-sm">Rent New
+                        Fleet</a>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <!-- Active Item 1 -->
+                    <div class="col-md-6">
+                        <div class="widget-card glass-card d-flex gap-3 p-2 border-0">
+                            <img src="../../assets/images/cat-320.png" alt="Excavator" class="rounded"
+                                style="width: 100px; height: 75px; object-fit: cover;">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex justify-content-between align-items-start mb-1">
+                                    <h6 class="mb-0 fw-bold text-truncate" style="font-size: 0.95rem;">Cat 320
+                                        Excavator
+                                    </h6>
+                                    <span class="badge bg-success-soft px-2 py-1 rounded-pill"
+                                        style="font-size: 0.6rem;">Active</span>
+                                </div>
+                                <p class="text-muted xsmall mb-1">Order #ORD-2025-001</p>
+                                <p class="text-muted xsmall mb-2 fw-medium"><i class="bi bi-calendar3 me-1"></i>Ends
+                                    in 5 days
+                                    (Oct 20)</p>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-primary px-3 py-1 fw-bold shadow-sm"
+                                        style="font-size: 0.7rem;" data-target="extendModal">Extend</button>
+                                    <button
+                                        class="btn btn-outline-light border-0 bg-white bg-opacity-10 px-3 py-1 fw-bold"
+                                        style="font-size: 0.7rem;" data-target="reportModal">Report</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Item 2 -->
+                    <div class="col-md-6">
+                        <div class="widget-card glass-card d-flex gap-3 p-2 border-0">
+                            <img src="../../assets/images/bobcat-s650.png" alt="Bobcat" class="rounded"
+                                style="width: 100px; height: 75px; object-fit: cover;">
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="d-flex justify-content-between align-items-start mb-1">
+                                    <h6 class="mb-0 fw-bold text-truncate" style="font-size: 0.95rem;">Bobcat S650
+                                    </h6>
+                                    <span class="badge bg-warning-soft px-2 py-1 rounded-pill"
+                                        style="font-size: 0.6rem;">Upcoming</span>
+                                </div>
+                                <p class="text-muted xsmall mb-1">Order #ORD-2025-045</p>
+                                <p class="text-muted xsmall mb-2 fw-medium"><i class="bi bi-calendar3 me-1"></i>Starts
+                                    Nov 01
+                                </p>
+                                <div class="d-flex gap-2">
+                                    <button
+                                        class="btn btn-outline-light border-0 bg-white bg-opacity-10 px-3 py-1 fw-bold"
+                                        style="font-size: 0.7rem;" data-target="detailsModal">Details</button>
+                                    <button
+                                        class="btn btn-outline-danger border-0 bg-danger bg-opacity-10 px-3 py-1 fw-bold"
+                                        style="font-size: 0.7rem;" data-target="cancelModal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rental History Table -->
+                <div class="widget-card glass-card border-0 p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="mb-0 fw-bold">Rental History</h6>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center gap-1">
+                                <input type="radio" class="btn-check" name="statusFilter" id="statusAll" value="all"
+                                    checked>
+                                <label
+                                    class="btn btn-outline-light btn-sm xsmall fw-bold px-3 border-0 bg-white bg-opacity-10"
+                                    for="statusAll">All</label>
+
+                                <input type="radio" class="btn-check" name="statusFilter" id="statusCompleted"
+                                    value="completed">
+                                <label
+                                    class="btn btn-outline-light btn-sm xsmall fw-bold px-3 border-0 bg-white bg-opacity-10"
+                                    for="statusCompleted">Completed</label>
+
+                                <input type="radio" class="btn-check" name="statusFilter" id="statusOngoing"
+                                    value="ongoing">
+                                <label
+                                    class="btn btn-outline-light btn-sm xsmall fw-bold px-3 border-0 bg-white bg-opacity-10"
+                                    for="statusOngoing">Ongoing</label>
+
+                                <input type="radio" class="btn-check" name="statusFilter" id="statusUpcoming"
+                                    value="upcoming">
+                                <label
+                                    class="btn btn-outline-light btn-sm xsmall fw-bold px-3 border-0 bg-white bg-opacity-10"
+                                    for="statusUpcoming">Upcoming</label>
+                            </div>
+                            <div class="vr bg-white opacity-10" style="height: 20px; width: 1px;"></div>
+                            <input type="text" id="rental-search" class="form-control xsmall py-1"
+                                placeholder="Search..." style="width: 250px; background: rgba(0,0,0,0.05);">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover table-borderless align-middle mb-0">
+                            <thead>
+                                <tr class="border-bottom" style="border-color: rgba(255,255,255,0.05) !important;">
+                                    <th class="ps-0 xsmall text-muted fw-bold text-uppercase">Equipment</th>
+                                    <th class="xsmall text-muted fw-bold text-uppercase">Order Date</th>
+                                    <th class="xsmall text-muted fw-bold text-uppercase text-center">Duration</th>
+                                    <th class="xsmall text-muted fw-bold text-uppercase">Total Cost</th>
+                                    <th class="xsmall text-muted fw-bold text-uppercase">Status</th>
+                                    <th class="pe-0 xsmall text-muted fw-bold text-uppercase text-end">Invoice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-bottom" style="border-color: rgba(255,255,255,0.02) !important;">
+                                    <td class="ps-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <img src="../../assets/images/komatsu-pc210.png" alt="Dozer" class="rounded"
+                                                style="width: 40px; height: 30px; object-fit: cover; background: rgba(0,0,0,0.05);">
+                                            <span class="fw-bold small">Komatsu D61 Dozer</span>
+                                        </div>
+                                    </td>
+                                    <td class="small">Sep 15, 2025</td>
+                                    <td class="small text-center"><span class="badge bg-primary-soft text-primary">7
+                                            Days</span></td>
+                                    <td class="small fw-bold">$3,850</td>
+                                    <td><span
+                                            class="badge bg-success-soft px-2 py-1 rounded-pill xsmall">Completed</span>
+                                    </td>
+                                    <td class="pe-0 text-end"><a href="#"
+                                            class="text-primary fw-bold xsmall decoration-none">PDF <i
+                                                class="bi bi-download ms-1"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <img src="../../assets/images/liebherr-crane.png" alt="Crane"
+                                                class="rounded"
+                                                style="width: 40px; height: 30px; object-fit: cover; background: rgba(0,0,0,0.05);">
+                                            <span class="fw-bold small">Liebherr Crane</span>
+                                        </div>
+                                    </td>
+                                    <td class="small">Aug 22, 2025</td>
+                                    <td class="small text-center"><span class="badge bg-primary-soft text-primary">3
+                                            Days</span></td>
+                                    <td class="small fw-bold">$3,600</td>
+                                    <td><span
+                                            class="badge bg-success-soft px-2 py-1 rounded-pill xsmall">Completed</span>
+                                    </td>
+                                    <td class="pe-0 text-end"><a href="#"
+                                            class="text-primary fw-bold xsmall decoration-none">PDF <i
+                                                class="bi bi-download ms-1"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <footer class="py-4 text-end small text-muted mt-auto">
+                <p class="mb-0">Powered by <a href="https://www.abhivorn.com/" target="_blank"
+                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modals (Native Project Style) -->
+    <!-- Extend Rental Modal -->
+    <div class="modal-overlay" id="extendModal">
+        <div class="modal-container border-0 shadow-lg">
+            <div class="modal-header border-bottom">
+                <h4 class="modal-title fw-bold">Extend Rental</h4>
+                <button type="button" class="modal-close" onclick="closeModal('extendModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="small mb-4">Select a new return date for <strong>Cat 320 Excavator</strong>.</p>
+                <div class="form-group">
+                    <label class="small fw-bold">New Return Date</label>
+                    <input type="date" class="form-control" value="2025-10-25">
+                </div>
+                <div class="alert bg-info-soft text-accent small border-0 py-2 mt-3">
+                    <i class="bi bi-info-circle me-2"></i>Estimated additional cost: <strong>$1,800</strong>
+                </div>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-outline" onclick="closeModal('extendModal')">Cancel</button>
+                <button type="button" class="btn btn-primary fw-bold"
+                    onclick="handleAction('extendModal', 'Extension Request Sent!')">Confirm Extension</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Issue Modal -->
+    <div class="modal-overlay" id="reportModal">
+        <div class="modal-container border-0 shadow-lg">
+            <div class="modal-header border-bottom">
+                <h4 class="modal-title fw-bold">Report Issue</h4>
+                <button type="button" class="modal-close" onclick="closeModal('reportModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="small mb-3">Describe the issue with <strong>Cat 320 Excavator</strong>.</p>
+                <div class="form-group">
+                    <select class="form-control mb-3">
+                        <option selected>Select Issue Type</option>
+                        <option>Engine Problem</option>
+                        <option>Hydraulic Leak</option>
+                        <option>Electronic Fault</option>
+                        <option>Other</option>
+                    </select>
+                    <textarea class="form-control" rows="4" placeholder="Describe the problem..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-outline" onclick="closeModal('reportModal')">Cancel</button>
+                <button type="button" class="btn btn-danger fw-bold"
+                    onclick="handleAction('reportModal', 'Support Ticket Created!')">Submit Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Details Modal -->
+    <div class="modal-overlay" id="detailsModal">
+        <div class="modal-container border-0 shadow-lg">
+            <div class="modal-header border-bottom">
+                <h4 class="modal-title fw-bold">Order Details</h4>
+                <button type="button" class="modal-close" onclick="closeModal('detailsModal')">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="p-3 border-bottom bg-white bg-opacity-5">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="../../assets/images/bobcat-s650.png" class="rounded"
+                            style="width: 80px; height: 60px; object-fit: cover;">
+                        <div>
+                            <h6 class="mb-0 fw-bold">Bobcat S650</h6>
+                            <p class="text-muted xsmall mb-0">Order #ORD-2025-045</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 py-3">
+                    <!-- Rental Period Section -->
+                    <div class="py-3 border-bottom border-secondary border-opacity-10">
+                        <div class="d-flex justify-content-between align-items-end mb-2">
+                            <label class="d-block text-muted xsmall text-uppercase fw-bold mb-0">Rental Period</label>
+                            <span
+                                class="badge bg-secondary-soft text-muted border border-secondary border-opacity-25 px-2 py-1"
+                                style="font-size: 0.7rem;">
+                                <i class="bi bi-clock me-1"></i>5 Days
+                            </span>
+                        </div>
+                        <div class="fs-5 fw-bold">Nov 01 - Nov 05, 2025</div>
+                    </div>
+
+                    <!-- Financials Section -->
+                    <div class="py-3 border-bottom border-secondary border-opacity-10">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted small">Daily Rate</span>
+                            <span class="fw-medium font-monospace">$350.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted small text-uppercase fw-bold">Total Amount</span>
+                            <span class="fw-bold text-warning fs-5 font-monospace">$1,750.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Operator Section -->
+                    <div class="py-3 d-flex align-items-center gap-3">
+                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                            style="width: 42px; height: 42px;">
+                            <i class="bi bi-person-fill fs-5"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="fw-bold text-white small">Operator Included</div>
+                            <div class="text-muted xsmall">Certified professional</div>
+                        </div>
+                        <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-outline w-100" onclick="closeModal('detailsModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-container border-0 shadow-lg" style="max-width: 400px;">
+            <div class="modal-body text-center py-4">
+                <div class="bg-danger bg-opacity-10 text-danger rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
+                    style="width: 60px; height: 60px;">
+                    <i class="bi bi-exclamation-triangle fs-2"></i>
+                </div>
+                <h5 class="fw-bold mb-2">Cancel Rental?</h5>
+                <p class="small mb-4">Are you sure you want to cancel the upcoming rental? This action cannot
+                    be undone.</p>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline flex-grow-1" onclick="closeModal('cancelModal')">Keep
+                        Rental</button>
+                    <button type="button" class="btn btn-danger flex-grow-1 fw-bold"
+                        onclick="handleAction('cancelModal', 'Rental Cancelled Successfully')">Yes, Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Simple Toast Container -->
+    <div id="liveToast" class="border-0 p-3 shadow-lg rounded-md"
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: none; min-width: 280px; background: rgba(17, 24, 39, 0.95); backdrop-filter: blur(8px); color: white; border: 1px solid rgba(255,255,255,0.1);">
+        <div class="d-flex align-items-center">
+            <i class="bi bi-check-circle-fill text-success me-3" style="font-size: 1.2rem;"></i>
+            <div id="toastMessage" class="fw-medium small">Action completed successfully!</div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+    <script>
+        // Modal Handlers
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function handleAction(modalId, message) {
+            closeModal(modalId);
+            showToast(message);
+        }
+
+        // Modal Triggers
+        document.querySelectorAll('[data-target]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                if (targetId) openModal(targetId);
+            });
+        });
+
+        // Close on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeModal(overlay.id);
+            });
+        });
+
+        // Simple search functionality
+        document.getElementById('rental-search').addEventListener('input', function (e) {
+            applyFilters();
+        });
+
+        // Apply Filters Logic
+        function applyFilters() {
+            const query = document.getElementById('rental-search').value.toLowerCase();
+            const status = document.querySelector('input[name="statusFilter"]:checked').value;
+            const rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                // Target the 5th column (index 4) for status badge
+                const statusBadge = row.cells[4].querySelector('.badge');
+                const rowStatus = statusBadge ? statusBadge.textContent.trim().toLowerCase() : '';
+
+                const matchesSearch = text.includes(query);
+                const matchesStatus = (status === 'all' || rowStatus === status);
+
+                row.style.display = (matchesSearch && matchesStatus) ? '' : 'none';
+            });
+
+        }
+
+        // Add listeners to radio buttons
+        document.querySelectorAll('input[name="statusFilter"]').forEach(radio => {
+            radio.addEventListener('change', applyFilters);
+        });
+
+        // Simple toast helper
+        function showToast(message) {
+            const toast = document.getElementById('liveToast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.textContent = message;
+            toast.style.display = 'block';
+            toast.style.animation = 'fadeIn 0.3s ease';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Handle PDF downloads
+        document.querySelectorAll('a[href="#"]').forEach(link => {
+            if (link.textContent.includes('PDF')) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showToast('Starting PDF Download...');
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
