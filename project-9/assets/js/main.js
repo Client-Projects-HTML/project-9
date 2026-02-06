@@ -69,6 +69,57 @@ function initMobileMenu() {
 }
 
 /* =========================================
+   Path Helpers
+   ========================================= */
+// Path Helpers
+// Calculate root path based on current location depth
+const getRootPath = () => {
+    const path = window.location.pathname.toLowerCase();
+
+    // Check for 2-level deep folders (dashboards)
+    if (path.includes('/dashboards/admin/') || path.includes('/dashboards/client/')) {
+        return '../../';
+    }
+
+    // Check for 1-level deep folders (pages)
+    if (path.includes('/pages/')) {
+        return '../';
+    }
+
+    // Default to root
+    return '';
+};
+
+// Get correct path for assets (images, css, js)
+// Always returns path relative to current file location pointing to root assets folder
+const getAssetPath = (path) => {
+    // If path is external (http/https), return as is
+    if (path.startsWith('http')) return path;
+
+    // Clean path: remove any existing ../ or assets/ prefixes to get a clean "assets/..." string
+    // We want the input to be treated as "assets/foo.png"
+    let cleanPath = path;
+    if (cleanPath.startsWith('../assets/')) cleanPath = cleanPath.substring(3);
+    if (cleanPath.startsWith('../../assets/')) cleanPath = cleanPath.substring(6);
+    if (!cleanPath.startsWith('assets/')) cleanPath = 'assets/' + cleanPath;
+
+    return getRootPath() + cleanPath;
+};
+
+// Get correct path for links to other pages
+// Assumes input is a filename in 'pages/' OR 'index.html'
+const getLinkPath = (page) => {
+    if (page === 'index.html') {
+        return getRootPath() + 'index.html';
+    }
+
+    // For all other pages, they are located in pages/
+    // So we need to go to root, then into pages/
+    return getRootPath() + 'pages/' + page;
+};
+
+
+/* =========================================
    Equipment Gallery (Public)
    ========================================= */
 const equipmentGalleryData = [
@@ -79,7 +130,7 @@ const equipmentGalleryData = [
         specs: "20 Ton • 160 HP • 22ft Dig Depth",
         price: 450,
         popularity: 90,
-        image: "../assets/images/cat-320.png",
+        image: "assets/images/cat-320.png",
         available: true
     },
     {
@@ -89,7 +140,7 @@ const equipmentGalleryData = [
         specs: "20 Ton • 205 HP • 3.4m Blade",
         price: 550,
         popularity: 85,
-        image: "../assets/images/komatsu-d65.png",
+        image: "assets/images/komatsu-d65.png",
         available: true
     },
     {
@@ -99,7 +150,7 @@ const equipmentGalleryData = [
         specs: "50 Ton Lift • 120ft Boom",
         price: 1200,
         popularity: 70,
-        image: "../assets/images/liebherr-crane.png",
+        image: "assets/images/liebherr-crane.png",
         available: true
     },
     {
@@ -109,7 +160,7 @@ const equipmentGalleryData = [
         specs: "3.8 Ton • 74 HP • High Flow",
         price: 250,
         popularity: 95,
-        image: "../assets/images/bobcat-s650.png",
+        image: "assets/images/bobcat-s650.png",
         available: true
     },
     {
@@ -119,7 +170,7 @@ const equipmentGalleryData = [
         specs: "22 Ton • 172 HP • 21ft Dig Depth",
         price: 480,
         popularity: 75,
-        image: "../assets/images/hitachi-zx210.png",
+        image: "assets/images/hitachi-zx210.png",
         available: true
     },
     {
@@ -129,7 +180,7 @@ const equipmentGalleryData = [
         specs: "19 Ton • 250 HP • 4.5 yd³ Bucket",
         price: 600,
         popularity: 80,
-        image: "../assets/images/cat-950.png",
+        image: "assets/images/cat-950.png",
         available: true
     },
     {
@@ -139,7 +190,7 @@ const equipmentGalleryData = [
         specs: "125ft Height • 1000lb Capacity",
         price: 350,
         popularity: 88,
-        image: "../assets/images/jlg-boom-lift.png",
+        image: "assets/images/jlg-boom-lift.png",
         available: true
     },
     {
@@ -149,7 +200,7 @@ const equipmentGalleryData = [
         specs: "39 Ton Payload • 469 HP",
         price: 800,
         popularity: 78,
-        image: "../assets/images/volvo-hauler.png",
+        image: "assets/images/volvo-hauler.png",
         available: true
     },
     {
@@ -159,7 +210,7 @@ const equipmentGalleryData = [
         specs: "104 Ton • 850 HP • 6.7m Blade",
         price: 1500,
         popularity: 65,
-        image: "../assets/images/cat-d11-dozer.png",
+        image: "assets/images/cat-d11-dozer.png",
         available: true
     },
     {
@@ -169,7 +220,7 @@ const equipmentGalleryData = [
         specs: "90 Ton • Rough Terrain • 47m Boom",
         price: 950,
         popularity: 72,
-        image: "../assets/images/terex-rt90-crane.png",
+        image: "assets/images/terex-rt90-crane.png",
         available: true
     },
     {
@@ -179,7 +230,7 @@ const equipmentGalleryData = [
         specs: "7.5 Ton • 97 HP • loader/Hoe",
         price: 320,
         popularity: 82,
-        image: "../assets/images/case-580-backhoe.png",
+        image: "assets/images/case-580-backhoe.png",
         available: true
     },
     {
@@ -189,7 +240,7 @@ const equipmentGalleryData = [
         specs: "800 Ton • 4000 HP • Biggest Dig",
         price: 5000,
         popularity: 50,
-        image: "../assets/images/liebherr-r9800.png",
+        image: "assets/images/liebherr-r9800.png",
         available: false
     },
     {
@@ -199,7 +250,7 @@ const equipmentGalleryData = [
         specs: "21 Ton • 160 HP • Mid-size",
         price: 460,
         popularity: 78,
-        image: "../assets/images/kobelco-sk210.png",
+        image: "assets/images/kobelco-sk210.png",
         available: true
     },
     {
@@ -209,7 +260,7 @@ const equipmentGalleryData = [
         specs: "100 Ton • Rough Terrain • 47m Boom",
         price: 1100,
         popularity: 68,
-        image: "../assets/images/tadano-gr-1000xl.png",
+        image: "assets/images/tadano-gr-1000xl.png",
         available: true
     },
     {
@@ -219,7 +270,7 @@ const equipmentGalleryData = [
         specs: "22 Ton • 165 HP • iMC 2.0",
         price: 475,
         popularity: 85,
-        image: "../assets/images/komatsu-pc210.png",
+        image: "assets/images/komatsu-pc210.png",
         available: true
     },
     {
@@ -229,7 +280,7 @@ const equipmentGalleryData = [
         specs: "36 Ton • 311 HP • Deep Reach",
         price: 750,
         popularity: 92,
-        image: "../assets/images/cat-320.png",
+        image: "assets/images/cat-320.png",
         available: true
     },
     {
@@ -239,7 +290,7 @@ const equipmentGalleryData = [
         specs: "45 Ton Payload • 469 HP",
         price: 850,
         popularity: 74,
-        image: "../assets/images/volvo-hauler.png",
+        image: "assets/images/volvo-hauler.png",
         available: true
     },
     {
@@ -249,7 +300,7 @@ const equipmentGalleryData = [
         specs: "8 Ton • 97 HP • 4WD",
         price: 340,
         popularity: 80,
-        image: "../assets/images/case-580-backhoe.png",
+        image: "assets/images/case-580-backhoe.png",
         available: true
     },
     {
@@ -259,7 +310,7 @@ const equipmentGalleryData = [
         specs: "104 Ton • 850 HP • Mining Grade",
         price: 1550,
         popularity: 60,
-        image: "../assets/images/cat-d11-dozer.png",
+        image: "assets/images/cat-d11-dozer.png",
         available: true
     },
     {
@@ -269,7 +320,7 @@ const equipmentGalleryData = [
         specs: "4.3 Ton • 74 HP • Vertical Lift",
         price: 280,
         popularity: 94,
-        image: "../assets/images/bobcat-s650.png",
+        image: "assets/images/bobcat-s650.png",
         available: true
     }
 ];
@@ -285,7 +336,7 @@ const blogPosts = [
         date: "Oct 12, 2025",
         author: "John Safety",
         excerpt: "Essential guidelines to ensure safety on the construction site while operating heavy machinery.",
-        image: "../assets/images/blog-safety.png",
+        image: "assets/images/blog-safety.png",
         content: `
             <p>Operating heavy equipment like excavators requires skill, attention to detail, and a strict adherence to safety protocols. Whether you're a seasoned pro or a new operator, reviewing these safety tips can prevent accidents and ensure a smooth project.</p>
             <h3>1. Inspect Before You Operate</h3>
@@ -306,7 +357,7 @@ const blogPosts = [
         date: "Sep 28, 2025",
         author: "Mark Tech",
         excerpt: "How to keep your leased equipment in top condition to avoid costly downtime.",
-        image: "../assets/images/blog-maintenance.png",
+        image: "assets/images/blog-maintenance.png",
         content: `
             <p>Maintenance is the key to longevity for any heavy machinery. A well-maintained machine is safer, more efficient, and less likely to break down at a critical moment.</p>
             <h3>1. Daily Fluid Checks</h3>
@@ -324,7 +375,7 @@ const blogPosts = [
         date: "Sep 15, 2025",
         author: "Sarah Future",
         excerpt: "Exploring the impact of AI and robotics on the modern construction site.",
-        image: "../assets/images/blog-tech.png",
+        image: "assets/images/blog-tech.png",
         content: `
             <p>The construction industry is on the brink of a digital revolution. Autonomous vehicles are no longer science fiction—they are appearing on sites around the world.</p>
             <h3>1. Increased Efficiency</h3>
@@ -342,7 +393,7 @@ const blogPosts = [
         date: "Aug 15, 2025",
         author: "Kevin Fluid",
         excerpt: "Keep your machine's muscle in top shape with our guide to hydraulic maintenance and common issue identification.",
-        image: "../assets/images/cat-320.png",
+        image: "assets/images/cat-320.png",
         content: `
             <p>The hydraulic system is the lifeblood of most heavy equipment. Without it, you have no lifting power, no steering, and no movement. Understanding how to care for this system is vital.</p>
             <h3>1. Check for Leaks Regularly</h3>
@@ -360,7 +411,7 @@ const blogPosts = [
         date: "Jul 22, 2025",
         author: "Emma Comfort",
         excerpt: "Reducing fatigue and injury through better cab setups and operator habits for long shifts on the job site.",
-        image: "../assets/images/komatsu-pc210.png",
+        image: "assets/images/komatsu-pc210.png",
         content: `
             <p>Operating heavy machinery for 8-12 hours a day takes a toll on the body. Proper ergonomics can prevent chronic pain and keep operators alert and safe.</p>
             <h3>1. Adjust Your Seat</h3>
@@ -378,7 +429,7 @@ const blogPosts = [
         date: "Jun 30, 2025",
         author: "David Data",
         excerpt: "Learn how real-time tracking and sensors are revolutionizing heavy equipment management and site productivity.",
-        image: "../assets/images/dashboard_hero_tech.png",
+        image: "assets/images/dashboard_hero_tech.png",
         content: `
             <p>Modern rental equipment is smarter than ever. Telematics allows both the owner and the lessee to track performance in real-time.</p>
             <h3>1. Fuel Management</h3>
@@ -533,14 +584,14 @@ function renderGallery() {
             : `<span style="background: #eee; color: #666; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; position: relative; top: 10px; left: 10px;">Rented</span>`;
 
         card.innerHTML = `
-            <div style="aspect-ratio: 16/9; width: 100%; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('${item.image}'); background-size: cover; background-position: center;">
+            <div style="aspect-ratio: 16/9; width: 100%; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('${getAssetPath(item.image)}'); background-size: cover; background-position: center;">
                 ${badgeHtml}
             </div>
             <h3 class="h5 mb-1">${item.name}</h3>
             <p class="text-muted small mb-2">${item.specs}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <span class="fw-bold" style="color: var(--color-primary);">$${item.price} / day</span>
-                <a href="contact.html?inquiry=${encodeURIComponent(item.name)}" class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.9rem;">Rent</a>
+                <a href="${getLinkPath('contact.html')}?inquiry=${encodeURIComponent(item.name)}" class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.9rem;">Rent</a>
             </div>
         `;
         listContainer.appendChild(card);
@@ -781,15 +832,15 @@ function initBlog() {
             card.style.minWidth = '300px';
 
             card.innerHTML = `
-                <div style="height: 200px; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('${post.image}'); background-size: cover; background-position: center;"></div>
+                <div style="height: 200px; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('${getAssetPath(post.image)}'); background-size: cover; background-position: center;"></div>
                 <div class="mb-2">
                     <span class="text-primary small fw-bold">${post.category.toUpperCase()}</span>
                     <span class="text-muted small mx-2">•</span>
                     <span class="text-muted small">${post.date}</span>
                 </div>
-                <h3 class="mb-2"><a href="blog-details.html?id=${post.id}">${post.title}</a></h3>
+                <h3 class="mb-2"><a href="${getLinkPath('blog-details.html')}?id=${post.id}">${post.title}</a></h3>
                 <p class="text-muted mb-3">${post.excerpt}</p>
-                <a href="blog-details.html?id=${post.id}" class="text-primary fw-bold">Read More →</a>
+                <a href="${getLinkPath('blog-details.html')}?id=${post.id}" class="text-primary fw-bold">Read More →</a>
             `;
             blogList.appendChild(card);
         });
@@ -840,7 +891,7 @@ function initBlogDetails() {
     if (sidebarSearch) {
         sidebarSearch.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                window.location.href = `blog.html?search=${encodeURIComponent(sidebarSearch.value)}`;
+                window.location.href = `${getLinkPath('blog.html')}?search=${encodeURIComponent(sidebarSearch.value)}`;
             }
         });
     }
@@ -855,7 +906,7 @@ function initBlogDetails() {
     if (categoryEl) categoryEl.textContent = post.category.toUpperCase();
     if (metaEl) metaEl.textContent = `${post.date} • By ${post.author}`;
     if (imageEl) {
-        imageEl.src = post.image;
+        imageEl.src = getAssetPath(post.image);
         imageEl.alt = post.title;
     }
 
@@ -870,8 +921,8 @@ function initBlogDetails() {
             .slice(0, 3)
             .map(p => `
                 <li>
-                    <a href="blog-details.html?id=${p.id}" class="d-flex gap-3 align-items-center">
-                        <div style="width: 60px; height: 60px; background-image: url('${p.image}'); background-size: cover; background-position: center; border-radius: var(--radius-sm);"></div>
+                    <a href="${getLinkPath('blog-details.html')}?id=${p.id}" class="d-flex gap-3 align-items-center">
+                        <div style="width: 60px; height: 60px; background-image: url('${getAssetPath(p.image)}'); background-size: cover; background-position: center; border-radius: var(--radius-sm);"></div>
                         <div>
                             <h6 class="mb-1" style="font-size: 0.9rem;">${p.title}</h6>
                             <small class="text-muted">${p.date}</small>
@@ -972,7 +1023,7 @@ const servicesData = [
         id: 'maintenance',
         title: "Maintenance & Repairs",
         subtitle: "Expert servicing to keep your fleet running at peak performance.",
-        image: "../assets/images/service-maintenance.png",
+        image: "assets/images/service-maintenance.png",
         overview: "Our state-of-the-art maintenance facilities and mobile service trucks allow us to handle everything from routine oil changes to major engine overhauls. We service all major brands.",
         benefits: [
             "24/7 Mobile Service Units for on-site repairs.",
@@ -999,7 +1050,7 @@ const servicesData = [
         id: 'logistics',
         title: "Logistics & Transport",
         subtitle: "Heavy haulage solutions to move your machinery safely and on time.",
-        image: "../assets/images/service-logistics.png",
+        image: "assets/images/service-logistics.png",
         overview: "Moving heavy equipment requires specialized trailers and permits. Our logistics team handles the entire process, ensuring your machines arrive at the job site ready to work.",
         benefits: [
             "Fleet of lowboys, flatbeds, and RGN trailers.",
@@ -1026,7 +1077,7 @@ const servicesData = [
         id: 'consultancy',
         title: "Project Consultancy",
         subtitle: "Expert advice on fleet sizing and site optimization.",
-        image: "../assets/images/service-consultancy.png",
+        image: "assets/images/service-consultancy.png",
         overview: "Not sure which machine is right for the job? Our consultants analyze your project requirements to recommend the most efficient and cost-effective equipment mix.",
         benefits: [
             "Site analysis and fleet optimization.",
@@ -1065,7 +1116,7 @@ function initServiceDetails() {
         service = servicesData[0]; // Default
     } else if (!service) {
         // Handle invalid ID case gracefully
-        detailsContainer.innerHTML = '<div class="container py-5 text-center"><h2>Service Not Found</h2><a href="services.html" class="btn btn-primary mt-3">Return to Services</a></div>';
+        detailsContainer.innerHTML = `<div class="container py-5 text-center"><h2>Service Not Found</h2><a href="${getLinkPath('services.html')}" class="btn btn-primary mt-3">Return to Services</a></div>`;
         return;
     }
 
@@ -1081,7 +1132,7 @@ function initServiceDetails() {
     // Image
     const mainImage = document.getElementById('service-image');
     if (mainImage) {
-        mainImage.src = service.image;
+        mainImage.src = getAssetPath(service.image);
         mainImage.alt = service.title;
     }
 
