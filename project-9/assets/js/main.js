@@ -1168,52 +1168,8 @@ function initServiceDetails() {
     }
 }
 
-// Page Transitions
-function initPageTransitions() {
-    // 1. Fade In on Load
-    // slight delay to ensure CSS is ready
-    setTimeout(() => {
-        document.body.classList.add('loaded');
-    }, 10);
-
-    // 2. Handle Browser Back/Forward Cache
-    // If page is loaded from cache (bfcache), ensure it's visible
-    window.addEventListener('pageshow', (event) => {
-        if (event.persisted) {
-            document.body.classList.remove('loaded');
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-            }, 10);
-        }
-    });
-
-    // 3. Intercept Links for Fade Out
-    document.addEventListener('click', (e) => {
-        const link = e.target.closest('a');
-
-        // Ignore if no link, or if modifier keys are pressed (ctrl/cmd+click)
-        if (!link || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
-
-        const href = link.getAttribute('href');
-        const target = link.getAttribute('target');
-
-        // Ignore anchors, external links opening in new tab, or javascript: void
-        if (!href || href.startsWith('#') || href.startsWith('javascript:') || target === '_blank') return;
-
-        // Proceed with transition
-        e.preventDefault();
-        document.body.classList.remove('loaded'); // Triggers fade out via CSS
-
-        // Wait for transition to finish, then navigate
-        setTimeout(() => {
-            window.location.href = href;
-        }, 400); // 400ms matches CSS transition duration
-    });
-}
-
 // Initialize all functions when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    initPageTransitions(); // Call first
     initTheme();
     initMobileMenu();
     initEquipmentGallery();
