@@ -21,6 +21,12 @@
         })();
     </script>
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .badge {
+            padding: 0.25em 0.6em;
+            font-size: 0.75rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,8 +34,7 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="../../pages/index.html" class="brand fw-bold" style="font-size: 1.5rem;">Heavy<span
-                        class="text-primary">Rent</span> <span
-                        style="font-size: 0.8rem; background: var(--color-primary); color: black; padding: 2px 5px; border-radius: 4px;">Admin</span></a>
+                        class="text-primary">Rent</span></a>
             </div>
             <nav class="sidebar-nav">
                 <a href="index.html" class="sidebar-link">Dashboard</a>
@@ -42,14 +47,18 @@
         </aside>
         <main class="main-content">
             <header class="topbar">
-                <h4 class="mb-0">Manage Orders</h4>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="../../pages/index.html" class="brand fw-bold text-decoration-none"
+                        style="font-size: 1.25rem;">
+                        Heavy<span class="text-primary">Rent</span>
+                    </a>
+                </div>
                 <div class="d-flex align-items-center gap-3">
                     <button id="theme-toggle" class="theme-toggle">☀️</button>
                     <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.25rem 0.5rem;">RTL</button>
-                    <div class="d-flex align-items-center gap-2">
-                        <img src="../../assets/images/profile-avatar.png" alt="Profile" class="nav-avatar">
-                        <span class="fw-bold">Admin User</span>
-                    </div>
+                    <button id="sidebar-toggle" class="btn btn-outline border-0 p-1 d-lg-none">
+                        <i class="bi bi-list fs-4"></i>
+                    </button>
                 </div>
             </header>
             <div class="container-fluid py-5">
@@ -64,7 +73,6 @@
                             <option value="Completed">Completed</option>
                             <option value="Cancelled">Cancelled</option>
                         </select>
-                        <button id="export-data-btn" class="btn btn-primary btn-sm">Export Data</button>
                     </div>
                 </div>
 
@@ -148,10 +156,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="py-4 text-end small text-muted mt-auto">
-                <p class="mb-0">Powered by <a href="https://www.abhivorn.com/" target="_blank"
-                        class="text-decoration-none text-primary">AbhiVorn technologies pvt.ltd.</a></p>
-            </footer>
+
         </main>
     </div>
 
@@ -159,8 +164,8 @@
     <div id="order-modal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
-                <h4>Order Details</h4>
-                <button class="modal-close">&times;</button>
+                <h4 id="modal-title">Order Details</h4>
+                <button class="modal-close"><i class="bi bi-x-lg"></i></button>
             </div>
             <div class="modal-body">
                 <div class="d-flex flex-column gap-3">

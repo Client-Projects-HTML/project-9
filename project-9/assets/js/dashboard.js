@@ -216,8 +216,18 @@ function initSidebar() {
     const toggleBtn = document.getElementById('sidebar-toggle');
 
     if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', () => {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent immediate closing
             sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (sidebar.classList.contains('active') &&
+                !sidebar.contains(e.target) &&
+                !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
         });
     }
 }
@@ -355,7 +365,7 @@ function initEquipment() {
     // Edit Modal Logic
     const editModal = document.getElementById('edit-modal');
     const editForm = document.getElementById('edit-equipment-form');
-    const closeBtn = editModal ? editModal.querySelector('.btn-close') : null;
+    const closeBtn = editModal ? editModal.querySelector('.modal-close') : null;
     const cancelBtn = document.getElementById('close-edit-modal');
 
     if (editForm) {
@@ -404,7 +414,7 @@ function initEquipment() {
 
 function openEquipmentModal(item = null) {
     const modal = document.getElementById('edit-modal');
-    const modalTitle = modal ? modal.querySelector('h3') : null;
+    const modalTitle = modal ? modal.querySelector('h4') : null;
     const submitBtn = document.getElementById('edit-equipment-form').querySelector('button[type="submit"]');
 
     if (item) {
@@ -484,8 +494,8 @@ function renderAndFilterEquipment() {
             <p class="text-muted small">Category: ${item.category} | Price: $${item.price}/day</p>
             <p class="text-muted small">Status: <span class="${statusColor} fw-bold" style="${statusStyle}">${item.status}</span></p>
             <div class="d-flex gap-2 mt-3">
-                <button class="btn btn-outline py-1 px-2 edit-equipment" data-id="${item.id}" style="font-size: 0.8rem;">Edit</button>
-                <button class="btn btn-outline py-1 px-2 delete-equipment" data-id="${item.id}" data-name="${item.name}" style="font-size: 0.8rem; border-color: red; color: red;">Delete</button>
+                <button class="btn btn-outline py-1 px-3 edit-equipment" data-id="${item.id}" style="font-size: 0.75rem;">Edit</button>
+                <button class="btn btn-outline py-1 px-3 delete-equipment" data-id="${item.id}" data-name="${item.name}" style="font-size: 0.75rem;">Delete</button>
             </div>
         `;
         listContainer.appendChild(card);

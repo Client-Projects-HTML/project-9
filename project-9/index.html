@@ -40,8 +40,11 @@
                 Heavy<span class="text-primary">Rent</span>
             </a>
 
+            <button class="navbar-toggler" id="navbar-toggler" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
+            </button>
 
-            <div class="nav-menu d-flex align-items-center gap-3" id="nav-menu">
+            <div class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link active">Home</a>
                 <a href="pages/about.html" class="nav-link">About Us</a>
                 <a href="pages/services.html" class="nav-link">Services</a>
@@ -51,26 +54,24 @@
                 <div class="d-flex align-items-center gap-2">
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">☀️</button>
                     <a href="pages/login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Login</a>
-                    <button id="rtl-toggle" class="btn btn-outline ms-2" style="padding: 0.5rem 1rem;">RTL</button>
+                    <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.5rem 1rem;">RTL</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="py-8"
+    <header class="py-8 hero-section"
         style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; color: white;">
         <div class="container text-center">
-            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Build Stronger with Premium Equipment</h1>
-            <p class="mb-4"
-                style="font-size: 1.25rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9;">
+            <h1 class="display-title mb-3">Build Stronger with Premium Equipment</h1>
+            <p class="mb-4 h4 fw-normal" style="max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9;">
                 Reliable heavy machinery rental and leasing solutions for construction, mining, and industrial projects.
             </p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="pages/equipment.html" class="btn btn-primary">Browse Equipment</a>
-                <a href="pages/contact.html" class="btn btn-outline" style="border-color: white; color: white;">Request
-                    a
-                    Quote</a>
+                <a href="pages/equipment.html" class="btn btn-primary btn-lg">Browse Equipment</a>
+                <a href="pages/contact.html" class="btn btn-outline btn-lg"
+                    style="border-color: white; color: white;">Request a Quote</a>
             </div>
         </div>
     </header>
@@ -78,21 +79,21 @@
     <!-- Features / Value Prop -->
     <section class="py-5" style="background-color: var(--color-bg-surface);">
         <div class="container">
-            <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <div class="card" style="flex: 1; min-width: 250px;">
-                    <h3 class="text-primary">01</h3>
+            <div class="grid-responsive">
+                <div class="card">
+                    <h3 class="h2 text-primary">01</h3>
                     <h4>Diverse Fleet</h4>
                     <p class="text-muted">From excavators to cranes, access a wide range of certified heavy machinery.
                     </p>
                 </div>
-                <div class="card" style="flex: 1; min-width: 250px;">
-                    <h3 class="text-primary">02</h3>
+                <div class="card">
+                    <h3 class="h2 text-primary">02</h3>
                     <h4>Flexible Leasing</h4>
                     <p class="text-muted">Short-term rentals or long-term leasing plans tailored to your project
                         timeline.</p>
                 </div>
-                <div class="card" style="flex: 1; min-width: 250px;">
-                    <h3 class="text-primary">03</h3>
+                <div class="card">
+                    <h3 class="h2 text-primary">03</h3>
                     <h4>Expert Support</h4>
                     <p class="text-muted">24/7 maintenance support and operator certification checks included.</p>
                 </div>
@@ -103,7 +104,7 @@
     <!-- Featured Equipment -->
     <section class="py-5">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-end mb-4">
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
                 <div>
                     <h2 class="mb-2">Featured Equipment</h2>
                     <p class="text-muted">Top-rated machinery ready for your site.</p>
@@ -111,13 +112,13 @@
                 <a href="pages/equipment.html" class="text-primary fw-bold text-decoration-none">View All Fleet →</a>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+            <div class="grid-responsive">
                 <!-- Card 1 -->
                 <div class="card">
-                    <div
-                        style="aspect-ratio: 16/9; width: 100%; height: auto; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('assets/images/cat-320.png'); background-size: cover; background-position: center;">
+                    <div class="mb-3 position-relative rounded overflow-hidden aspect-video"
+                        style="background-image: url('assets/images/cat-320.png'); background-size: cover; background-position: center;">
                         <span
-                            style="background: var(--color-primary); color: black; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; position: relative; top: 10px; left: 10px;">Available</span>
+                            class="position-absolute top-0 start-0 m-2 badge bg-primary text-dark fw-bold px-2 py-1 rounded">Available</span>
                     </div>
                     <h3 class="h5 mb-1">CAT 320 Excavator</h3>
                     <p class="text-muted small mb-2">22 Ton, Dig Depth 6.7m</p>
@@ -129,10 +130,10 @@
 
                 <!-- Card 2 -->
                 <div class="card">
-                    <div
-                        style="aspect-ratio: 16/9; width: 100%; height: auto; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('assets/images/komatsu-d65.png'); background-size: cover; background-position: center;">
+                    <div class="mb-3 position-relative rounded overflow-hidden aspect-video"
+                        style="background-image: url('assets/images/komatsu-d65.png'); background-size: cover; background-position: center;">
                         <span
-                            style="background: var(--color-primary); color: black; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; position: relative; top: 10px; left: 10px;">Available</span>
+                            class="position-absolute top-0 start-0 m-2 badge bg-primary text-dark fw-bold px-2 py-1 rounded">Available</span>
                     </div>
                     <h3 class="h5 mb-1">Komatsu D65 Dozer</h3>
                     <p class="text-muted small mb-2">205 HP, Blade 3.4m</p>
@@ -144,10 +145,10 @@
 
                 <!-- Card 3 -->
                 <div class="card">
-                    <div
-                        style="aspect-ratio: 16/9; width: 100%; height: auto; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('assets/images/liebherr-crane.png'); background-size: cover; background-position: center;">
+                    <div class="mb-3 position-relative rounded overflow-hidden aspect-video"
+                        style="background-image: url('assets/images/liebherr-crane.png'); background-size: cover; background-position: center;">
                         <span
-                            style="background: var(--color-primary); color: black; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; position: relative; top: 10px; left: 10px;">Available</span>
+                            class="position-absolute top-0 start-0 m-2 badge bg-primary text-dark fw-bold px-2 py-1 rounded">Available</span>
                     </div>
                     <h3 class="h5 mb-1">Liebherr Mobile Crane</h3>
                     <p class="text-muted small mb-2">55 Ton, Boom 40m</p>
@@ -163,21 +164,21 @@
     <!-- Stats Section -->
     <section class="py-8" style="background-color: #1a1e21; color: white;">
         <div class="container">
-            <div class="d-flex flex-wrap text-center justify-content-center gap-5">
-                <div style="flex: 1;">
-                    <div class="text-primary fw-bold" style="font-size: 3rem;">500+</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
                     <p class="text-white opacity-75">Projects Completed</p>
                 </div>
-                <div style="flex: 1;">
-                    <div class="text-primary fw-bold" style="font-size: 3rem;">120+</div>
+                <div class="stat-item">
+                    <div class="stat-number">120+</div>
                     <p class="text-white opacity-75">Machines in Fleet</p>
                 </div>
-                <div style="flex: 1;">
-                    <div class="text-primary fw-bold" style="font-size: 3rem;">98%</div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
                     <p class="text-white opacity-75">Client Satisfaction</p>
                 </div>
-                <div style="flex: 1;">
-                    <div class="text-primary fw-bold" style="font-size: 3rem;">24/7</div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
                     <p class="text-white opacity-75">Support Available</p>
                 </div>
             </div>
@@ -191,8 +192,8 @@
                 <h2>What Our Clients Say</h2>
                 <p class="text-muted">Trusted by leading construction firms.</p>
             </div>
-            <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <div class="card p-4" style="flex: 1; min-width: 300px; border: none; box-shadow: var(--shadow-sm);">
+            <div class="grid-responsive">
+                <div class="card p-4 border-0 shadow-sm">
                     <div class="mb-3 text-primary">★★★★★</div>
                     <p class="mb-4">"HeavyRent provided us with reliable excavators on short notice. Their service saved
                         our project timeline. Highly recommended!"</p>
@@ -206,7 +207,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card p-4" style="flex: 1; min-width: 300px; border: none; box-shadow: var(--shadow-sm);">
+                <div class="card p-4 border-0 shadow-sm">
                     <div class="mb-3 text-primary">★★★★★</div>
                     <p class="mb-4">"The quality of the machinery is top-notch. No breakdowns, and the digital leasing
                         process was smooth and hassle-free."</p>
@@ -227,10 +228,10 @@
     <!-- Final CTA -->
     <section class="py-8 text-center">
         <div class="container">
-            <h2 class="mb-3" style="font-size: 2.5rem;">Ready to Start Your Next Project?</h2>
-            <p class="text-muted mb-4" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Get the equipment
+            <h2 class="mb-3 display-title" style="font-size: 2.5rem;">Ready to Start Your Next Project?</h2>
+            <p class="text-muted mb-4 h4 fw-normal" style="max-width: 600px; margin: 0 auto;">Get the equipment
                 you need, when you need it. Contact us for a custom quote today.</p>
-            <div class="d-flex justify-content-center gap-3">
+            <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
                 <a href="pages/contact.html" class="btn btn-primary btn-lg">Get a Quote</a>
                 <a href="pages/equipment.html" class="btn btn-outline btn-lg">View Fleet</a>
             </div>
@@ -258,7 +259,7 @@
                 </div>
 
                 <!-- Quick Links -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-6 col-lg-3 col-md-6">
                     <h5 class="mb-3" style="color: var(--color-footer-heading);">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="index.html" class="text-decoration-none"
@@ -277,7 +278,7 @@
                 </div>
 
                 <!-- Support -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-6 col-lg-3 col-md-6">
                     <h5 class="mb-3" style="color: var(--color-footer-heading);">Support</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="pages/404.html" class="text-decoration-none"
