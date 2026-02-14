@@ -7,6 +7,7 @@
     <title>Heavy Equipment Rental & Leasing - Premium Machinery Solutions</title>
     <meta name="description"
         content="Top-rated heavy equipment rental and leasing services. Excavators, dozers, cranes, and more available for your construction needs.">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,13 +37,19 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container d-flex justify-content-between align-items-center">
-            <a href="index.html" class="brand fw-bold" style="font-size: 1.5rem;">
-                Heavy<span class="text-primary">Rent</span>
+            <a href="index.html" class="brand">
+                <img src="assets/images/favicon.svg" alt="HeavyRent Logo" class="brand-logo">
+                Heavy<span class="brand-primary">Rent</span>
             </a>
 
-            <button class="navbar-toggler" id="navbar-toggler" aria-label="Toggle navigation">
-                <i class="bi bi-list"></i>
-            </button>
+            <div class="navbar-actions d-flex align-items-center gap-2">
+                <!-- Mobile Toggles (Hidden on Desktop) -->
+                <button class="theme-toggle d-lg-none" aria-label="Toggle Theme">☀️</button>
+                <button class="rtl-toggle btn btn-outline btn-sm d-lg-none" style="padding: 0.4rem 0.7rem;">RTL</button>
+                <button class="navbar-toggler" id="navbar-toggler" aria-label="Toggle navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
 
             <div class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link active">Home</a>
@@ -51,10 +58,28 @@
                 <a href="pages/equipment.html" class="nav-link">Equipment</a>
                 <a href="pages/blog.html" class="nav-link">Blog</a>
                 <a href="pages/contact.html" class="nav-link">Contact</a>
-                <div class="d-flex align-items-center gap-2">
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">☀️</button>
-                    <a href="pages/login.html" class="btn btn-outline" style="padding: 0.5rem 1rem;">Login</a>
-                    <button id="rtl-toggle" class="btn btn-outline" style="padding: 0.5rem 1rem;">RTL</button>
+
+                <!-- Desktop Toggles (Visible only on Desktop) -->
+                <div class="d-none d-lg-flex align-items-center gap-2 ms-2">
+                    <button class="theme-toggle" aria-label="Toggle Theme">☀️</button>
+                    <button class="rtl-toggle btn btn-outline btn-sm" style="padding: 0.4rem 0.7rem;">RTL</button>
+                </div>
+
+                <div class="ms-lg-2 mt-3 mt-lg-0 w-100 w-lg-auto d-flex flex-column flex-lg-row gap-2">
+                    <a href="pages/register.html" class="btn btn-outline w-100 w-lg-auto"
+                        style="padding: 0.4rem 1.5rem;">Sign Up</a>
+                    <div class="dropdown-wrapper">
+                        <div class="btn-group w-100 w-lg-auto">
+                            <a href="pages/login.html" class="btn btn-primary" style="padding: 0.4rem 1.5rem;">Login</a>
+                            <button class="btn btn-primary dropdown-toggle-split" aria-label="Toggle Login Options">
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="dashboards/client/index.html" class="dropdown-item">Client Dashboard</a>
+                            <a href="dashboards/admin/index.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,47 +139,56 @@
 
             <div class="grid-responsive">
                 <!-- Card 1 -->
-                <div class="card">
-                    <div class="mb-3 position-relative rounded overflow-hidden aspect-video"
-                        style="background-image: url('assets/images/cat-320.png'); background-size: cover; background-position: center;">
-                        <span
-                            class="position-absolute top-0 start-0 m-2 badge bg-primary text-dark fw-bold px-2 py-1 rounded">Available</span>
+                <div class="modern-card">
+                    <div class="modern-card-img-wrapper">
+                        <div class="equipment-badge badge-available">Available</div>
+                        <img src="assets/images/cat-320.png" alt="CAT 320 Excavator" class="modern-card-img">
                     </div>
-                    <h3 class="h5 mb-1">CAT 320 Excavator</h3>
-                    <p class="text-muted small mb-2">22 Ton, Dig Depth 6.7m</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="fw-bold text-primary">$450 / day</span>
-                        <a href="pages/contact.html" class="btn btn-outline btn-sm">Rent</a>
+                    <div class="modern-card-content">
+                        <h3 class="h5 mb-1">CAT 320 Excavator</h3>
+                        <p class="text-muted small mb-3">22 Ton, Dig Depth 6.7m</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <div class="equipment-price-tag">
+                                $450 <span class="equipment-price-period">/ day</span>
+                            </div>
+                            <a href="pages/contact.html" class="btn btn-outline btn-sm">Rent</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="card">
-                    <div class="mb-3 position-relative rounded overflow-hidden aspect-video"
-                        style="background-image: url('assets/images/komatsu-d65.png'); background-size: cover; background-position: center;">
-                        <span
-                            class="position-absolute top-0 start-0 m-2 badge bg-primary text-dark fw-bold px-2 py-1 rounded">Available</span>
+                <div class="modern-card">
+                    <div class="modern-card-img-wrapper">
+                        <div class="equipment-badge badge-available">Available</div>
+                        <img src="assets/images/komatsu-d65.png" alt="Komatsu D65 Dozer" class="modern-card-img">
                     </div>
-                    <h3 class="h5 mb-1">Komatsu D65 Dozer</h3>
-                    <p class="text-muted small mb-2">205 HP, Blade 3.4m</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="fw-bold text-primary">$550 / day</span>
-                        <a href="pages/contact.html" class="btn btn-outline btn-sm">Rent</a>
+                    <div class="modern-card-content">
+                        <h3 class="h5 mb-1">Komatsu D65 Dozer</h3>
+                        <p class="text-muted small mb-3">205 HP, Blade 3.4m</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <div class="equipment-price-tag">
+                                $550 <span class="equipment-price-period">/ day</span>
+                            </div>
+                            <a href="pages/contact.html" class="btn btn-outline btn-sm">Rent</a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="card">
-                    <div class="mb-3 position-relative rounded overflow-hidden aspect-video"
-                        style="background-image: url('assets/images/liebherr-crane.png'); background-size: cover; background-position: center;">
-                        <span
-                            class="position-absolute top-0 start-0 m-2 badge bg-primary text-dark fw-bold px-2 py-1 rounded">Available</span>
+                <div class="modern-card">
+                    <div class="modern-card-img-wrapper">
+                        <div class="equipment-badge badge-available">Available</div>
+                        <img src="assets/images/liebherr-crane.png" alt="Liebherr Mobile Crane" class="modern-card-img">
                     </div>
-                    <h3 class="h5 mb-1">Liebherr Mobile Crane</h3>
-                    <p class="text-muted small mb-2">55 Ton, Boom 40m</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="fw-bold text-primary">$1,200 / day</span>
-                        <a href="pages/contact.html" class="btn btn-outline btn-sm">Rent</a>
+                    <div class="modern-card-content">
+                        <h3 class="h5 mb-1">Liebherr Mobile Crane</h3>
+                        <p class="text-muted small mb-3">55 Ton, Boom 40m</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <div class="equipment-price-tag">
+                                $1,200 <span class="equipment-price-period">/ day</span>
+                            </div>
+                            <a href="pages/contact.html" class="btn btn-outline btn-sm">Rent</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -244,13 +278,13 @@
         <div class="container">
             <div class="row gy-4">
                 <!-- Brand -->
-                <div class="col-lg-3 col-md-6">
-                    <a href="index.html" class="d-inline-block mb-3 text-decoration-none">
-                        <span class="fw-bold" style="font-size: 1.5rem; color: var(--color-footer-heading);">Heavy<span
-                                class="text-primary">Rent</span></span>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <a href="index.html" class="brand mb-3">
+                        <img src="assets/images/favicon.svg" alt="HeavyRent Logo" class="brand-logo">
+                        Heavy<span class="brand-primary">Rent</span>
                     </a>
-                    <p class="small mb-4">Your trusted partner for heavy equipment rental and leasing solutions.
-                        Building the future, together.</p>
+                    <p class="text-muted">Your trusted partner for heavy equipment rental. Quality machinery for every
+                        project. Building the future, together.</p>
                     <div class="d-flex gap-3">
                         <a href="#" style="color: var(--color-footer-link);">Twitter</a>
                         <a href="#" style="color: var(--color-footer-link);">LinkedIn</a>

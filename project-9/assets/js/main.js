@@ -6,7 +6,8 @@
    Theme Toggle (Dark/Light)
    ========================================= */
 function initTheme() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
+    // Select all theme toggles (mobile & desktop)
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
 
     // Check if theme is already set by head script
     let currentTheme = document.documentElement.getAttribute('data-theme');
@@ -24,36 +25,37 @@ function initTheme() {
         document.documentElement.setAttribute('data-theme', currentTheme);
     }
 
-    // Update button icon to match current state
-    updateToggleIcon(currentTheme === 'dark' ? 'moon' : 'sun');
+    // Update all buttons to match current state
+    updateToggleIcons(currentTheme === 'dark' ? 'moon' : 'sun');
 
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
+    // Attach click listeners to all buttons
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
             let theme = document.documentElement.getAttribute('data-theme');
             if (theme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
-                updateToggleIcon('sun');
+                updateToggleIcons('sun');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
-                updateToggleIcon('moon');
+                updateToggleIcons('moon');
             }
         });
-    }
+    });
 }
 
-function updateToggleIcon(iconType) {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    if (!themeToggleBtn) return;
-
-    if (iconType === 'moon') {
-        themeToggleBtn.innerHTML = '<i class="bi bi-moon"></i>';
-        themeToggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
-    } else {
-        themeToggleBtn.innerHTML = '<i class="bi bi-sun"></i>';
-        themeToggleBtn.setAttribute('aria-label', 'Switch to Dark Mode');
-    }
+function updateToggleIcons(iconType) {
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle');
+    themeToggleBtns.forEach(btn => {
+        if (iconType === 'moon') {
+            btn.innerHTML = '<i class="bi bi-moon"></i>';
+            btn.setAttribute('aria-label', 'Switch to Light Mode');
+        } else {
+            btn.innerHTML = '<i class="bi bi-sun"></i>';
+            btn.setAttribute('aria-label', 'Switch to Dark Mode');
+        }
+    });
 }
 
 /* =========================================
@@ -68,6 +70,29 @@ function initMobileMenu() {
             menu.classList.toggle('active');
             const isExpanded = menu.classList.contains('active');
             toggler.setAttribute('aria-expanded', isExpanded);
+        });
+    }
+}
+
+/* =========================================
+   Login Dropdown
+   ========================================= */
+function initLoginDropdown() {
+    const dropdownToggle = document.querySelector('.dropdown-toggle-split');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    if (dropdownToggle && dropdownMenu) {
+        dropdownToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
         });
     }
 }
@@ -581,21 +606,25 @@ function renderGallery() {
 
     paginatedItems.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'card card-fade-in';
+        card.className = 'modern-card card-fade-in';
 
-        const badgeHtml = item.available
-            ? `<span style="background: var(--color-primary); color: black; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; position: relative; top: 10px; left: 10px;">Available</span>`
-            : `<span style="background: #eee; color: #666; padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: bold; position: relative; top: 10px; left: 10px;">Rented</span>`;
+        const badgeClass = item.available ? 'badge-available' : 'badge-rented';
+        const badgeText = item.available ? 'Available' : 'Rented';
 
         card.innerHTML = `
-            <div style="aspect-ratio: 16/9; width: 100%; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('${getAssetPath(item.image)}'); background-size: cover; background-position: center;">
-                ${badgeHtml}
+            <div class="modern-card-img-wrapper">
+                <div class="equipment-badge ${badgeClass}">${badgeText}</div>
+                <img src="${getAssetPath(item.image)}" alt="${item.name}" class="modern-card-img">
             </div>
-            <h3 class="h5 mb-1">${item.name}</h3>
-            <p class="text-muted small mb-2">${item.specs}</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <span class="fw-bold" style="color: var(--color-primary);">$${item.price} / day</span>
-                <a href="${getLinkPath('contact.html')}?inquiry=${encodeURIComponent(item.name)}" class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size: 0.9rem;">Rent</a>
+            <div class="modern-card-content">
+                <h3 class="h5 mb-1">${item.name}</h3>
+                <p class="text-muted small mb-3">${item.specs}</p>
+                <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <div class="equipment-price-tag">
+                        $${item.price} <span class="equipment-price-period">/ day</span>
+                    </div>
+                    <a href="${getLinkPath('contact.html')}?inquiry=${encodeURIComponent(item.name)}" class="btn btn-outline btn-sm">Rent</a>
+                </div>
             </div>
         `;
         listContainer.appendChild(card);
@@ -831,20 +860,24 @@ function initBlog() {
 
         filtered.forEach(post => {
             const card = document.createElement('div');
-            card.className = 'card card-fade-in';
-            card.style.flex = '1';
-            card.style.minWidth = '300px';
+            card.className = 'modern-card card-fade-in';
 
             card.innerHTML = `
-                <div style="height: 200px; background-color: #eee; border-radius: var(--radius-md); margin-bottom: 1rem; background-image: url('${getAssetPath(post.image)}'); background-size: cover; background-position: center;"></div>
-                <div class="mb-2">
-                    <span class="text-primary small fw-bold">${post.category.toUpperCase()}</span>
-                    <span class="text-muted small mx-2">•</span>
-                    <span class="text-muted small">${post.date}</span>
+                <div class="modern-card-img-wrapper">
+                    <img src="${getAssetPath(post.image)}" alt="${post.title}" class="modern-card-img">
                 </div>
-                <h3 class="mb-2"><a href="${getLinkPath('blog-details.html')}?id=${post.id}">${post.title}</a></h3>
-                <p class="text-muted mb-3">${post.excerpt}</p>
-                <a href="${getLinkPath('blog-details.html')}?id=${post.id}" class="text-primary fw-bold">Read More →</a>
+                <div class="modern-card-content">
+                    <div class="mb-2">
+                        <span class="text-primary small fw-bold">${post.category.toUpperCase()}</span>
+                        <span class="text-muted small mx-2">•</span>
+                        <span class="text-muted small">${post.date}</span>
+                    </div>
+                    <h3 class="h4 mb-2"><a href="${getLinkPath('blog-details.html')}?id=${post.id}">${post.title}</a></h3>
+                    <p class="text-muted mb-3">${post.excerpt}</p>
+                    <a href="${getLinkPath('blog-details.html')}?id=${post.id}" class="learn-more-link">
+                        Read More <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
             `;
             blogList.appendChild(card);
         });
@@ -1172,6 +1205,7 @@ function initServiceDetails() {
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initMobileMenu();
+    initLoginDropdown();
     initEquipmentGallery();
     initRTL();
     initTestimonialCarousel();
