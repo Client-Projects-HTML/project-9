@@ -29,7 +29,7 @@
         /* Specific overrides for SaaS look */
         .hero-saas {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding-top: 8rem;
+            padding-top: 5rem;
             padding-bottom: 5rem;
         }
 
@@ -46,6 +46,11 @@
             filter: blur(50px);
             z-index: -1;
         }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.6;
+        }
     </style>
 </head>
 
@@ -55,8 +60,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <a href="../index.html" class="brand fw-bold" style="font-size: 1.5rem;">
                 <img src="../assets/images/favicon.svg" alt="HeavyRent Logo" class="brand-logo">
-                Heavy<span class="text-primary">Rent</span> <span
-                    style="font-size: 0.8rem; background: var(--color-primary); color: black; padding: 2px 5px; border-radius: 4px;">SaaS</span>
+                Heavy<span class="text-primary">Rent</span>
             </a>
             <div class="navbar-actions d-flex align-items-center gap-2">
                 <!-- Mobile Toggles (Hidden on Desktop) -->
@@ -67,7 +71,14 @@
                 </button>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="../index.html" class="nav-link">Home</a>
+                <div class="dropdown-wrapper">
+                    <a href="../index.html" class="nav-link nav-link-dropdown active">Home <i
+                            class="bi bi-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="../index.html" class="dropdown-item">Home 1 - General</a>
+                        <a href="home-2.html" class="dropdown-item">Home 2 - Niche</a>
+                    </div>
+                </div>
                 <a href="about.html" class="nav-link">About Us</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="pricing.html" class="nav-link">Pricing</a>
@@ -105,15 +116,16 @@
         <div class="blob" style="bottom: -50px; right: -50px; background: rgba(0, 123, 255, 0.1);"></div>
 
         <div class="container">
-            <h1 class="mb-3" style="font-size: 3.5rem;">The Operating System for <br><span class="text-primary">Heavy
-                    Equipment</span> Rental</h1>
-            <p class="text-muted mb-4" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto;">Streamline your
+            <h1 class="mb-3 display-title">The Operating System for <br class="d-none d-md-block">
+                <span class="text-primary">Heavy Equipment</span> Rental
+            </h1>
+            <p class="text-muted mb-4 hero-subtitle" style="max-width: 700px; margin: 0 auto;">Streamline your
                 construction projects with our all-in-one digital leasing platform. Track availability, manage
                 contracts, and book operators instantly.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="register.html" class="btn btn-primary btn-lg"
+            <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mt-4">
+                <a href="register.html" class="btn btn-primary btn-lg w-100 w-sm-auto"
                     style="font-size: 1.1rem; padding: 1rem 2rem;">Start Free Trial</a>
-                <a href="equipment.html" class="btn btn-outline btn-lg"
+                <a href="equipment.html" class="btn btn-outline btn-lg w-100 w-sm-auto"
                     style="font-size: 1.1rem; padding: 1rem 2rem;">Explore Fleet</a>
             </div>
 
@@ -126,30 +138,56 @@
         </div>
     </header>
 
-    <!-- Features Grid -->
-    <section class="py-8">
+    <!-- Why Choose Section -->
+    <section class="py-8" style="background-color: var(--color-bg-surface);">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="mb-3">Why Choose HeavyRent SaaS?</h2>
-                <p class="text-muted">Built for modern construction companies.</p>
+                <span class="badge badge-primary mb-2">Industrial Excellence</span>
+                <h2 class="mb-3">Advanced Fleet Management</h2>
+                <p class="text-muted">Built for modern construction and mining giants.</p>
             </div>
 
             <div class="d-flex flex-wrap gap-4">
                 <div class="card p-4" style="flex: 1; min-width: 250px;">
-                    <div class="text-primary h2">01</div>
-                    <h4>Real-time Tracking</h4>
-                    <p class="text-muted">Know exactly where your rented equipment is with GPS integration.</p>
+                    <div class="text-primary h2 mb-3"><i class="bi bi-cpu"></i></div>
+                    <h4>Predictive Maintenance</h4>
+                    <p class="text-muted">Lifting downtime risks with AI-driven sensor data monitoring.</p>
                 </div>
                 <div class="card p-4" style="flex: 1; min-width: 250px;">
-                    <div class="text-primary h2">02</div>
-                    <h4>Digital Contracts</h4>
-                    <p class="text-muted">Sign lease agreements digitally. No more paperwork to lose.</p>
+                    <div class="text-primary h2 mb-3"><i class="bi bi-shield-check"></i></div>
+                    <h4>Automated Compliance</h4>
+                    <p class="text-muted">Stay ahead of safety regulations with digital logbooks and certs.</p>
                 </div>
                 <div class="card p-4" style="flex: 1; min-width: 250px;">
-                    <div class="text-primary h2">03</div>
-                    <h4>Instant Booking</h4>
-                    <p class="text-muted">Check availability and book machinery in seconds from your phone.</p>
+                    <div class="text-primary h2 mb-3"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h4>Usage Analytics</h4>
+                    <p class="text-muted">Detailed telematics reports to optimize fuel and operator efficiency.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Niche Segment: Mining & Infrastructure -->
+    <section class="py-8">
+        <div class="container d-flex flex-column flex-lg-row align-items-center gap-5">
+            <div style="flex: 1;">
+                <h2 class="display-title mb-4">Precision for Mining & Large Infrastructure</h2>
+                <p class="text-muted mb-4">Handling massive projects requires more than just machinery; it requires
+                    high-fidelity tracking and expert coordination. Our platform provides specialized modules for:</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3 d-flex align-items-center gap-3"><i
+                            class="bi bi-check-circle-fill text-primary"></i> Multi-site coordination</li>
+                    <li class="mb-3 d-flex align-items-center gap-3"><i
+                            class="bi bi-check-circle-fill text-primary"></i> Heavy-lift planning simulations</li>
+                    <li class="mb-3 d-flex align-items-center gap-3"><i
+                            class="bi bi-check-circle-fill text-primary"></i> Operator performance scoring</li>
+                </ul>
+                <a href="contact.html" class="btn btn-primary mt-3">Book for Enterprise</a>
+            </div>
+            <div style="flex: 1;">
+                <img src="https://images.unsplash.com/photo-1578319439584-104c94d37305?auto=format&fit=crop&q=80&w=1000"
+                    alt="Mining Site"
+                    style="border-radius: var(--radius-lg); width: 100%; box-shadow: var(--shadow-lg);">
             </div>
         </div>
     </section>

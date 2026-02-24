@@ -75,26 +75,43 @@ function initMobileMenu() {
 }
 
 /* =========================================
-   Login Dropdown
+   Dropdown System (Login, Home, etc.)
    ========================================= */
-function initLoginDropdown() {
-    const dropdownToggle = document.querySelector('.dropdown-toggle-split');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
+function initDropdowns() {
+    const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
 
-    if (dropdownToggle && dropdownMenu) {
-        dropdownToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('show');
-        });
+    dropdownWrappers.forEach(wrapper => {
+        const toggle = wrapper.querySelector('.dropdown-toggle-split, .nav-link-dropdown');
+        const menu = wrapper.querySelector('.dropdown-menu');
 
-        // Close when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.classList.remove('show');
+        if (toggle && menu) {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Close other open dropdowns
+                dropdownWrappers.forEach(otherWrapper => {
+                    if (otherWrapper !== wrapper) {
+                        const otherMenu = otherWrapper.querySelector('.dropdown-menu');
+                        if (otherMenu) otherMenu.classList.remove('show');
+                    }
+                });
+
+                menu.classList.toggle('show');
+            });
+        }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+        dropdownWrappers.forEach(wrapper => {
+            const menu = wrapper.querySelector('.dropdown-menu');
+            const toggle = wrapper.querySelector('.dropdown-toggle-split, .nav-link-dropdown');
+            if (menu && toggle && !wrapper.contains(e.target)) {
+                menu.classList.remove('show');
             }
         });
-    }
+    });
 }
 
 /* =========================================
@@ -1205,7 +1222,7 @@ function initServiceDetails() {
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initMobileMenu();
-    initLoginDropdown();
+    initDropdowns();
     initEquipmentGallery();
     initRTL();
     initTestimonialCarousel();

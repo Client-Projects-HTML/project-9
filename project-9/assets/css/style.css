@@ -446,8 +446,26 @@ ul {
     display: flex !important;
 }
 
+.flex-column {
+    flex-direction: column !important;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
 .d-block {
     display: block !important;
+}
+
+@media (min-width: 576px) {
+    .flex-sm-row {
+        flex-direction: row !important;
+    }
+
+    .w-sm-auto {
+        width: auto !important;
+    }
 }
 
 .d-inline-block {
@@ -468,7 +486,7 @@ ul {
 }
 
 /* Responsive Flex Utilities */
-@media (min-width: 992px) {
+@media (min-width: 1101px) {
     .flex-lg-row {
         flex-direction: row !important;
     }
@@ -518,7 +536,7 @@ ul {
     transition: height var(--transition-fast);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
     .brand {
         font-size: 1.1rem;
         gap: 2px;
@@ -699,6 +717,22 @@ footer .brand:hover {
 .dropdown-item:hover {
     background-color: var(--color-bg-surface);
     color: var(--color-primary);
+}
+
+.nav-link-dropdown {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.nav-link-dropdown i {
+    font-size: 0.8rem;
+    transition: transform var(--transition-fast);
+}
+
+.dropdown-wrapper .dropdown-menu.show+.nav-link-dropdown i {
+    transform: rotate(180deg);
 }
 
 .btn-danger {
@@ -1172,9 +1206,25 @@ footer .brand:hover {
     display: none;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1101px) {
     .nav-menu .desktop-only {
         display: flex;
+    }
+}
+
+/* Optimization for tight desktop navbar (1101px to 1280px) */
+@media (min-width: 1101px) and (max-width: 1280px) {
+    .nav-menu {
+        gap: var(--spacing-2) !important;
+    }
+
+    .nav-link {
+        padding: var(--spacing-2) 0.4rem !important;
+        font-size: 0.95rem;
+    }
+
+    .ms-lg-2 {
+        margin-left: 0.5rem !important;
     }
 }
 
@@ -1186,7 +1236,7 @@ footer .brand:hover {
 }
 
 /* Mobile styles */
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
 
     /* Changed breakpoint to 991px for tablet transition */
     .navbar .container {
@@ -1334,6 +1384,7 @@ footer .brand:hover {
    5. GRID & UTILITY EXTENSIONS (Added for Footer)
    ========================================= */
 /* Grid */
+/* Grid */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -1344,15 +1395,12 @@ footer .brand:hover {
 .row>* {
     padding-inline-end: 1rem;
     padding-inline-start: 1rem;
+    flex-shrink: 0;
     width: 100%;
+    max-width: 100%;
 }
 
-/* Gutter Y support (Simplified) */
-.gy-4 {
-    row-gap: var(--spacing-4);
-}
-
-/* Added Grid Classes */
+/* Simplified Grid Classes */
 .col-4 {
     flex: 0 0 auto;
     width: 33.333333%;
@@ -1368,10 +1416,30 @@ footer .brand:hover {
     width: 66.666667%;
 }
 
+.col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
 @media (min-width: 768px) {
+    .col-md-3 {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+
+    .col-md-4 {
+        flex: 0 0 auto;
+        width: 33.333333%;
+    }
+
     .col-md-6 {
         flex: 0 0 auto;
         width: 50%;
+    }
+
+    .col-md-8 {
+        flex: 0 0 auto;
+        width: 66.666667%;
     }
 }
 
@@ -1379,6 +1447,11 @@ footer .brand:hover {
     .col-lg-3 {
         flex: 0 0 auto;
         width: 25%;
+    }
+
+    .col-lg-4 {
+        flex: 0 0 auto;
+        width: 33.333333%;
     }
 }
 
@@ -1390,7 +1463,7 @@ footer .brand:hover {
     gap: var(--spacing-3);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
     .dashboard-grid-layout {
         display: flex;
         flex-direction: column;
@@ -1475,8 +1548,57 @@ footer .brand:hover {
     font-size: 0.875rem;
 }
 
+/* Authentication Components */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.auth-divider:not(:empty)::before {
+    margin-right: 1rem;
+}
+
+.auth-divider:not(:empty)::after {
+    margin-left: 1rem;
+}
+
+.social-login-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--color-text-main);
+    padding: 0.75rem;
+    font-weight: 500;
+}
+
+.btn-social:hover {
+    background-color: var(--color-bg-surface);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
 /* =========================================
-   6. FAQ SECTION STYLES
+   FAQ SECTION STYLES
    ========================================= */
 .faq-item {
     background-color: var(--color-bg-card);
@@ -1608,7 +1730,7 @@ footer .brand:hover {
     flex-shrink: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
     .topbar {
         padding: 0.5rem 1rem;
     }
@@ -2389,7 +2511,7 @@ footer a.text-primary:hover,
 }
 
 /* Visibility Utilities */
-@media (min-width: 992px) {
+@media (min-width: 1101px) {
     .d-lg-none {
         display: none !important;
     }
